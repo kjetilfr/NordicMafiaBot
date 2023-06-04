@@ -25,3 +25,9 @@ test_driver.get('https://www.nordicmafia.org')
 recaptcha_iframe = test_driver.find_element(By.XPATH, '//iframe[@title="reCAPTCHA"]')
 
 solver.click_recaptcha_v2(iframe=recaptcha_iframe)
+gfadlpomg¨piofdnmgpfdmgpfid
+gmfd
+gfdo
+mgsfd
+mgfdoå
+p+
