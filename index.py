@@ -1,3 +1,5 @@
+from selenium_recaptcha_solver import RecaptchaSolver
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -8,9 +10,8 @@ import random
 
 driver = webdriver.Chrome()
 driver.get("http://www.nordicmafia.org")
-# driver.get('file:///C:/Users/Kjetil/Desktop/nm.html')
-# assert "Google" in driver.title
-time.sleep(1)
+#driver.get('file:///C:/Users/Kjetil/Desktop/nm%20antibot.html')
+
 
 def getConfig():
     myConfig = dict()
@@ -169,16 +170,23 @@ def fengsel():
 
 
 login()
-krim()
-fightclub()
-utpress()
-biltyveri()
-fengsel()
+#krim()
+#fightclub()
+#utpress()
+#biltyveri()
+#fengsel()
+
+def timeDown():
+    x = 0
+    while x < 10:
+        time.sleep(10)
+        print("Sleep 10" + " " + x)
+        x += 1
 
 
 def doBotStuff():
     print("Start doBotStuff")
-    time.sleep(500)
+    timeDown()
     krim()
     fightclub()
     utpress()
@@ -188,3 +196,13 @@ def doBotStuff():
 
 
 doBotStuff()
+
+def checkAntiBot():
+    if len(driver.find_elements(By.XPATH, "//div[text()='Anti-bot']")) > 0:
+        print("bot")
+        time.sleep(sleepRandomLow()/2)
+        #Hidden anti-bot code
+    else:
+        print("no bot")
+
+#checkAntiBot()
