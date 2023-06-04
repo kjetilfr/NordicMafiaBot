@@ -80,6 +80,7 @@ def login():
 
 def krim():
     driver.find_element(By.LINK_TEXT, "Kriminalitet").click()
+    checkAntiBot()
     isCounting = checkCountdown()
     if isCounting == False:
         # KRIMINALITET START
@@ -92,6 +93,7 @@ def krim():
 
 def utpress():
     driver.find_element(By.LINK_TEXT, "Utpressing").click()
+    checkAntiBot()
     isCounting = checkCountdown()
     if isCounting == False:
         # UTPRESSING START
@@ -106,6 +108,7 @@ def utpress():
 
 def fightclub():
     driver.find_element(By.LINK_TEXT, "Fightclub").click()
+    checkAntiBot()
     isCounting = checkCountdown()
     if isCounting == False:
         # FIGHTCLUB START
@@ -153,6 +156,7 @@ def sendCar():
 def biltyveri():
     # BILTYVERI START
     driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
+    checkAntiBot()
     isCounting = checkCountdown()
     if isCounting == False:
         time.sleep(sleepRandomLow() / 2)
@@ -166,6 +170,7 @@ def biltyveri():
 
 def fengsel():
     driver.find_element(By.LINK_TEXT, "Fengsel").click()
+    checkAntiBot()
     isCounting = checkCountdown()
     if isCounting == False:
         # FENGSEL START
@@ -181,12 +186,8 @@ def fengsel():
         print("Timer is going")
 
 
-login()
-#krim()
-#fightclub()
-#utpress()
-#biltyveri()
-#fengsel()
+
+
 
 def timeDown():
     x = 0
@@ -207,8 +208,6 @@ def doBotStuff():
     doBotStuff()
 
 
-doBotStuff()
-
 def checkAntiBot():
     if len(driver.find_elements(By.XPATH, "//div[text()='Anti-bot']")) > 0:
         print("bot")
@@ -219,4 +218,11 @@ def checkAntiBot():
     else:
         print("no bot")
 
-#checkAntiBot()
+
+login()
+krim()
+fightclub()
+utpress()
+biltyveri()
+fengsel()
+doBotStuff()
