@@ -132,12 +132,12 @@ def sendCar():
     selectValue = random.randint(0, 5)
     time.sleep(sleepRandomLow())
     driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']").click()
-    time.sleep(5)
+    time.sleep(sleepRandomLow()/2)
     select = Select(driver.find_element(By.NAME, "targetcity"))
     time.sleep(sleepRandomLow())
-    time.sleep(5)
+    time.sleep(sleepRandomLow()/2)
     select.select_by_value(str(selectValue))
-    time.sleep(5)
+    time.sleep(sleepRandomLow()/2)
     targetCity = select.first_selected_option.text
     print("'" + currentCity + "'" + " " + "'" + targetCity + "'")
     if targetCity == currentCity:  # if trying to send to current city restart function
@@ -186,14 +186,11 @@ def fengsel():
         print("Timer is going")
 
 
-
-
-
 def timeDown():
     x = 0
     while x < 10:
         time.sleep(10)
-        print("Sleep 10" + " " + x)
+        print("Sleep 10" + " " + str(x))
         x += 1
 
 
