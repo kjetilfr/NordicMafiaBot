@@ -88,7 +88,7 @@ def krim():
         driver.find_element(By.ID, "rowid_table_select_krimaction4").click()
         # KRIMINALITET END
     else:
-        print("Timer is going")
+        print("Krim timer is going")
 
 
 def utpress():
@@ -103,7 +103,7 @@ def utpress():
         driver.find_element(By.NAME, "submitBlackmail").click()
         # UTPRESSING END
     else:
-        print("Timer is going")
+        print("Utpress timer is going")
 
 
 def fightclub():
@@ -116,7 +116,7 @@ def fightclub():
         driver.find_element(By.XPATH, "//td[text()='25 pushups']").click()
         # FIGHTCLUB END
     else:
-        print("Timer is going")
+        print("Fightclub timer is going")
 
 
 def checkCountdown():
@@ -165,7 +165,7 @@ def biltyveri():
         if len(biltyveriSuccess) > 0:
             sendCar()
     else:
-        print("Timer is going")
+        print("Car timer is going")
 
 
 def fengsel():
@@ -183,14 +183,14 @@ def fengsel():
         time.sleep(3)
         fengsel()
     else:
-        print("Timer is going")
+        print("Fengsel timer is going")
 
 
 def timeDown():
     x = 0
     while x < 10:
-        time.sleep(10)
-        print("Sleep 10" + " " + str(x))
+        time.sleep(20)
+        print("Sleep 20" + " " + str(x))
         x += 1
 
 
