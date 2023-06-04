@@ -163,8 +163,10 @@ def biltyveri():
         driver.find_element(By.ID, "rowid_table_select_gtaaction0").click()
         biltyveriSuccess = driver.find_elements(By.CLASS_NAME, "successBox")
         if len(biltyveriSuccess) > 0:
+            time.sleep(sleepRandomLow())
             sendCar()
     else:
+        time.sleep(sleepRandomLow())
         print("Car timer is going")
 
 
