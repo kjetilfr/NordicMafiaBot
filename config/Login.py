@@ -2,12 +2,16 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 import random
-from index import sleepRandomLow
+#from SleepRandomLow import sleepRandomLow
+
+
+def sleepRandomLow():
+    return random.randint(1, 3)
 
 
 def getConfig():
     myConfig = dict()
-    fh = open('foobar.config').readlines()
+    fh = open('../foobar.config').readlines()
     for line in fh:
         row = line.split(',')
     myConfig['username'] = row[0]
