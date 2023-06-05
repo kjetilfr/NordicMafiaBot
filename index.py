@@ -1,8 +1,5 @@
-
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 import time
 import random
 from config.Login import login
@@ -11,6 +8,7 @@ from config.Utpressing import utpress
 from config.Kriminalitet import krim
 from config.Fengsel import fengsel
 from config.FightClub import fightclub
+from config.SleepRandomLow import sleepRandomLow
 
 test_ua = 'Mozilla/5.0 (Windows NT 4.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
 
@@ -33,10 +31,6 @@ driver.get("http://www.nordicmafia.org")
 #driver.get('file:///C:/Users/Kjetil/Downloads/forum.html')
 
 
-def sleepRandomLow():
-    return random.randint(1, 3)
-
-
 def timeDown():
     x = 0
     while x < 10:
@@ -49,11 +43,12 @@ def timeDown():
 def doBotStuff():
     print("Start doBotStuff")
     timeDown()
-    krim()
-    fightclub()
-    utpress()
-    biltyveri()
-    fengsel()
+    login(driver)
+    krim(driver)
+    fightclub(driver)
+    utpress(driver)
+    biltyveri(driver)
+    fengsel(driver)
     doBotStuff()
 
 
@@ -67,7 +62,7 @@ def startBot():
     utpress(driver)
     biltyveri(driver)
     fengsel(driver)
-    doBotStuff(driver)
+    doBotStuff()
 
 
 startBot()
