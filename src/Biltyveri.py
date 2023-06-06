@@ -5,10 +5,9 @@ import random
 from . import GetCity
 from . import AntiBot
 from . import CheckCountdown
+from . import IsLoggedIn
+from . SleepRandom import sleepRandomLow
 
-
-def sleepRandomLow():
-    return random.randint(1, 3)
 
 def sendCar(driver):
     currentCity = GetCity.getCity(driver)
@@ -38,6 +37,7 @@ def sendCar(driver):
 def biltyveri(driver):
     # BILTYVERI START
     driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
+    IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)
     isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:

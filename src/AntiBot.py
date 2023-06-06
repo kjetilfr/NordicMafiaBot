@@ -1,7 +1,7 @@
 from selenium_recaptcha_solver import RecaptchaSolver
 from selenium.webdriver.common.by import By
 import time
-from . import SleepRandomLow
+from . import SleepRandom
 
 def checkAntiBot(driver):
     if len(driver.find_elements(By.XPATH, "//div[text()='Anti-bot']")) > 0:

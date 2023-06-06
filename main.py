@@ -1,4 +1,5 @@
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium import webdriver
 import time
 import random
@@ -27,25 +28,20 @@ driver.get("http://www.nordicmafia.org")
 
 
 def timeDown():
-    x = 0
-    while x < 10:
-        sleepTime = random.randint(10, 50)
-        time.sleep(sleepTime)
-        print("Sleep " + str(sleepTime) + " " + str(x))
-        x += 1
+    sleepTime = random.randint(180, 230)
+    print("Sleep " + str(sleepTime))
+    time.sleep(sleepTime)
 
 
 def doBotStuff():
     print("Start doBotStuff")
     timeDown()
     Bunker.gaaIBunkerCheck(driver)
-    Login.login(driver)
     Kriminalitet.krim(driver)
     FightClub.fightclub(driver)
     Utpressing.utpress(driver)
     Biltyveri.biltyveri(driver)
     Fengsel.fengsel(driver)
-    Bunker.gaaIBunkerCheck(driver)
     doBotStuff()
 
 

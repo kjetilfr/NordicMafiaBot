@@ -1,12 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.keys import Keys
 import time
 import datetime
 import random
 from . import AntiBot
-from . import SleepRandomLow
+from . import SleepRandom
 from . import CheckCountdown
+from . import IsLoggedIn
 
 
 def isBetweenTime(NordicMafiaTime):
@@ -27,11 +27,13 @@ def checkClock(driver):
 
 def enterBuncker(driver):
     driver.find_element(By.LINK_TEXT, "Eiendom").click()
-    time.sleep(SleepRandomLow.sleepRandomLow() / 2)
+    IsLoggedIn.checkLogin(driver)
+    AntiBot.checkAntiBot(driver)
+    time.sleep(SleepRandom.sleepRandomLow() / 2)
     select = Select(driver.find_element(By.NAME, "numhours"))
-    time.sleep(SleepRandomLow.sleepRandomLow() / 4)
+    time.sleep(SleepRandom.sleepRandomLow() / 4)
     select.select_by_value("2")
-    time.sleep(SleepRandomLow.sleepRandomLow() / 2)
+    time.sleep(SleepRandom.sleepRandomLow() / 2)
     driver.find_element(By.NAME, "enterOwnBunker").click()
     driver.switch_to.alert.accept()
     print("sleep for " + str(7200 + random.randint(50, 200)))
@@ -39,7 +41,6 @@ def enterBuncker(driver):
 
 
 def gaaIBunkerCheck(driver):
-    AntiBot.checkAntiBot(driver)
     if isBetweenTime(checkClock(driver)):
         isCounting = CheckCountdown.checkCountdown(driver)
         if isCounting == False:

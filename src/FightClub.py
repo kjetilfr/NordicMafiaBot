@@ -3,6 +3,7 @@ import time
 import random
 from . import AntiBot
 from . import CheckCountdown
+from . import IsLoggedIn
 
 
 def sleepRandomLow():
@@ -11,6 +12,7 @@ def sleepRandomLow():
 
 def fightclub(driver):
     driver.find_element(By.LINK_TEXT, "Fightclub").click()
+    IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)
     isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
