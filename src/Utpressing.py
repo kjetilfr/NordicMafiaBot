@@ -10,6 +10,7 @@ def sleepRandomLow():
     return random.randint(1, 3)
 
 def utpress(driver):
+    IsLoggedIn.checkLogin(driver)
     driver.find_element(By.LINK_TEXT, "Utpressing").click()
     IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)

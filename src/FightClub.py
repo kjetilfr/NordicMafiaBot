@@ -11,6 +11,7 @@ def sleepRandomLow():
 
 
 def fightclub(driver):
+    IsLoggedIn.checkLogin(driver)
     driver.find_element(By.LINK_TEXT, "Fightclub").click()
     IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)

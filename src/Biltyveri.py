@@ -35,6 +35,7 @@ def sendCar(driver):
 
 
 def biltyveri(driver):
+    IsLoggedIn.checkLogin(driver)
     # BILTYVERI START
     driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
     IsLoggedIn.checkLogin(driver)

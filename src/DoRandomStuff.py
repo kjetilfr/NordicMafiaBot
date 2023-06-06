@@ -6,6 +6,7 @@ from . import IsLoggedIn
 
 
 def doRandomStuff(driver):
+    IsLoggedIn.checkLogin(driver)
     randomAction = random.randint(0, 4)
     if randomAction == 0:
         driver.find_element(By.LINK_TEXT, "Handlingslogg").click()

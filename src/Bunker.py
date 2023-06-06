@@ -41,6 +41,7 @@ def enterBuncker(driver):
 
 
 def gaaIBunkerCheck(driver):
+    IsLoggedIn.checkLogin(driver)
     if isBetweenTime(checkClock(driver)):
         isCounting = CheckCountdown.checkCountdown(driver)
         if isCounting == False:

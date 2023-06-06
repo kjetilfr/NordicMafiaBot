@@ -9,6 +9,7 @@ def sleepRandomLow():
     return random.randint(1, 3)
 
 def krim(driver):
+    IsLoggedIn.checkLogin(driver)
     driver.find_element(By.LINK_TEXT, "Kriminalitet").click()
     IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)
