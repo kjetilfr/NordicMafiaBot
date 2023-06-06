@@ -1,9 +1,8 @@
 from selenium.webdriver.common.by import By
 import time
 import random
-from AntiBot import checkAntiBot
-#from SleepRandomLow import sleepRandomLow
-from CheckCountdown import checkCountdown
+from . import AntiBot
+from . import CheckCountdown
 
 
 def sleepRandomLow():
@@ -11,8 +10,8 @@ def sleepRandomLow():
 
 def utpress(driver):
     driver.find_element(By.LINK_TEXT, "Utpressing").click()
-    checkAntiBot(driver)
-    isCounting = checkCountdown(driver)
+    AntiBot.checkAntiBot(driver)
+    isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
         # UTPRESSING START
         time.sleep(sleepRandomLow()/3)

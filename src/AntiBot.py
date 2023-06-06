@@ -1,12 +1,12 @@
 from selenium_recaptcha_solver import RecaptchaSolver
 from selenium.webdriver.common.by import By
 import time
-from SleepRandomLow import sleepRandomLow
+from . import SleepRandomLow
 
 def checkAntiBot(driver):
     if len(driver.find_elements(By.XPATH, "//div[text()='Anti-bot']")) > 0:
         print("bot")
-        time.sleep(sleepRandomLow()/2)
+        time.sleep(SleepRandomLow.sleepRandomLow()/2)
         solver = RecaptchaSolver(driver=driver)
         recaptcha_iframe = driver.find_element(By.XPATH, '//iframe[@title="reCAPTCHA"]')
         try:

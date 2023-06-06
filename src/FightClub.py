@@ -1,13 +1,9 @@
 from selenium.webdriver.common.by import By
 import time
 import random
-from AntiBot import checkAntiBot
-from SleepRandomLow import sleepRandomLow
-from CheckCountdown import checkCountdown
+from . import AntiBot
+from . import CheckCountdown
 
-
-def sleepRandomLow():
-    return random.randint(1, 3)
 
 def sleepRandomLow():
     return random.randint(1, 3)
@@ -15,8 +11,8 @@ def sleepRandomLow():
 
 def fightclub(driver):
     driver.find_element(By.LINK_TEXT, "Fightclub").click()
-    checkAntiBot(driver)
-    isCounting = checkCountdown(driver)
+    AntiBot.checkAntiBot(driver)
+    isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
         # FIGHTCLUB START
         time.sleep(sleepRandomLow()/3)

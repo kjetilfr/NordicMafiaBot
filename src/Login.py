@@ -2,7 +2,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 import random
-#from SleepRandomLow import sleepRandomLow
 
 
 def sleepRandomLow():
@@ -11,12 +10,14 @@ def sleepRandomLow():
 
 def getConfig():
     myConfig = dict()
-    fh = open('../foobar.config').readlines()
+    fh = open('foobar.config').readlines()
     for line in fh:
         row = line.split(',')
     myConfig['username'] = row[0]
     myConfig['password'] = row[1]
     return myConfig
+
+#print(getConfig())
 
 
 def login(driver):

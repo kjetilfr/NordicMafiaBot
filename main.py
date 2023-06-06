@@ -2,13 +2,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 import time
 import random
-from config.Login import login
-from config.Biltyveri import biltyveri
-from config.Utpressing import utpress
-from config.Kriminalitet import krim
-from config.Fengsel import fengsel
-from config.FightClub import fightclub
-from config.SleepRandomLow import sleepRandomLow
+from src import *
+
 
 test_ua = 'Mozilla/5.0 (Windows NT 4.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
 
@@ -43,25 +38,25 @@ def timeDown():
 def doBotStuff():
     print("Start doBotStuff")
     timeDown()
-    login(driver)
-    krim(driver)
-    fightclub(driver)
-    utpress(driver)
-    biltyveri(driver)
-    fengsel(driver)
+    Bunker.gaaIBunkerCheck(driver)
+    Login.login(driver)
+    Kriminalitet.krim(driver)
+    FightClub.fightclub(driver)
+    Utpressing.utpress(driver)
+    Biltyveri.biltyveri(driver)
+    Fengsel.fengsel(driver)
+    Bunker.gaaIBunkerCheck(driver)
     doBotStuff()
 
 
-
-
-
 def startBot():
-    login(driver)
-    krim(driver)
-    fightclub(driver)
-    utpress(driver)
-    biltyveri(driver)
-    fengsel(driver)
+    Login.login(driver)
+    Kriminalitet.krim(driver)
+    FightClub.fightclub(driver)
+    Utpressing.utpress(driver)
+    Biltyveri.biltyveri(driver)
+    Bunker.gaaIBunkerCheck(driver)
+    Fengsel.fengsel(driver)
     doBotStuff()
 
 
