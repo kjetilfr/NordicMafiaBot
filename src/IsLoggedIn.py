@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from . import Login
 
@@ -9,4 +11,5 @@ def checkLogin(driver):
     except:
         print("Not logged in")
         driver.get("http://www.nordicmafia.org")
+        time.sleep(500)
         Login.login(driver)
