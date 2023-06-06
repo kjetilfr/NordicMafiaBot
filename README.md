@@ -11,7 +11,7 @@ Utfører:
 
 
 Mulige oppdateringer:
-- Utpress spesifikk spiller
+- Utpress spesifikk utpressing spiller
 - Velge type kriminalitet
 - Velge type fightclub
 - Velge type biltyveri
