@@ -10,6 +10,7 @@ def doRandomStuff(driver):
     randomAction = random.randint(0, 4)
     if randomAction == 0:
         driver.find_element(By.LINK_TEXT, "Handlingslogg").click()
+        #trykk på profila til den som hjeleper fra fengsel
         IsLoggedIn.checkLogin(driver)
         time.sleep(SleepRandom.sleepRandomLow() * 2)
     elif randomAction == 1:

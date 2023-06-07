@@ -7,8 +7,10 @@ def checkLogin(driver):
     try:
         username = driver.find_element(By.ID, "usernameCont").text
         print("Logged in as " + username)
+        return True
     except:
         print("Not logged in")
         driver.get("http://www.nordicmafia.org")
-        time.sleep(500)
+        time.sleep(20)
         Login.login(driver)
+        return False

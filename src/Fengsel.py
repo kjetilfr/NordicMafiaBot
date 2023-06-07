@@ -13,16 +13,18 @@ def sleepRandomLow():
 
 
 def brytUt(driver):
+    AntiBot.checkAntiBot(driver)
     isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
         time.sleep(sleepRandomLow() / 2)
         if len(driver.find_elements(By.LINK_TEXT, "Bryt ut")) > 0:
             driver.find_element(By.LINK_TEXT, "Bryt ut").click()
-            time.sleep(SleepRandom.sleepRandomLow())
+            time.sleep(SleepRandom.sleepRandomLow() + 2)
             isCounting = CheckCountdown.checkCountdown(driver)
             if isCounting == False:
                 brytUt(driver)
             else:
+                time.sleep(SleepRandom.sleepRandomLow() + 1)
                 print("Fengsel timer is going")
         else:
             time.sleep(random.randint(1, 2))
@@ -35,6 +37,8 @@ def brytUt(driver):
 def fengsel(driver):
     IsLoggedIn.checkLogin(driver)
     driver.find_element(By.LINK_TEXT, "Fengsel").click()
-    IsLoggedIn.checkLogin(driver)
-    AntiBot.checkAntiBot(driver)
-    brytUt(driver)
+    if IsLoggedIn.checkLogin(driver):
+        brytUt(driver)
+    else:
+        driver.find_element(By.LINK_TEXT, "Fengsel").click()
+        brytUt(driver)

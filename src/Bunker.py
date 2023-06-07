@@ -10,7 +10,7 @@ from . import IsLoggedIn
 
 
 def isBetweenTime(NordicMafiaTime):
-    if datetime.time(23, 30, 00) <= NordicMafiaTime <= datetime.time(23, 50, 00):
+    if datetime.time(22, 30, 00) <= NordicMafiaTime <= datetime.time(22, 50, 00):
         return True
     else:
         return False
@@ -25,7 +25,7 @@ def checkClock(driver):
     return nordicMafiaTimeTimeFormat
 
 
-def enterBuncker(driver):
+def enterBunker(driver):
     driver.find_element(By.LINK_TEXT, "Eiendom").click()
     IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)
@@ -45,9 +45,9 @@ def gaaIBunkerCheck(driver):
     if isBetweenTime(checkClock(driver)):
         isCounting = CheckCountdown.checkCountdown(driver)
         if isCounting == False:
-            enterBuncker(driver)
+            enterBunker(driver)
         else:
-            enterBuncker(driver)
+            enterBunker(driver)
             time.sleep(300 + random.randint(10, 30))
     else:
         print("Some kind of timer is going")

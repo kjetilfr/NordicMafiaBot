@@ -1,5 +1,4 @@
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 from selenium import webdriver
 import time
 import random
@@ -22,13 +21,9 @@ options.add_argument("--disable-extensions")
 driver = webdriver.Chrome(chrome_driver_binary, options=options)
 driver.get("http://www.nordicmafia.org")
 
-#test
-#driver = webdriver.Chrome()
-#driver.get('file:///C:/Users/Kjetil/Downloads/forum.html')
-
 
 def timeDown():
-    sleepTime = random.randint(180, 230)
+    sleepTime = random.randint(230, 280)
     print("Sleep " + str(sleepTime))
     time.sleep(sleepTime)
 

@@ -28,26 +28,35 @@ def sendCar(driver):
     else:
         print("ACTUALLY SENDING CAR!")
         # actually send car
-        time.sleep(sleepRandomLow())
+        time.sleep(sleepRandomLow() / 3)
         driver.find_element(By.NAME, "dotransport").click()
-        time.sleep(sleepRandomLow())
+        time.sleep(sleepRandomLow() / 3)
         driver.find_element(By.NAME, "doTransport_confirm").click()
 
 
-def biltyveri(driver):
-    IsLoggedIn.checkLogin(driver)
-    # BILTYVERI START
-    driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
-    IsLoggedIn.checkLogin(driver)
+def utforBiltyveri(driver):
     AntiBot.checkAntiBot(driver)
     isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
         time.sleep(sleepRandomLow() / 2)
-        driver.find_element(By.ID, "rowid_table_select_gtaaction0").click()
+        try:
+            driver.find_element(By.ID, "rowid_table_select_gtaaction0").click()
+        except:
+            print("Biltyveri action 0 went wrong")
         biltyveriSuccess = driver.find_elements(By.CLASS_NAME, "successBox")
         if len(biltyveriSuccess) > 0:
-            time.sleep(sleepRandomLow())
+            time.sleep(sleepRandomLow() / 2)
             sendCar(driver)
     else:
         time.sleep(sleepRandomLow())
         print("Car timer is going")
+
+def biltyveri(driver):
+    IsLoggedIn.checkLogin(driver)
+    driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
+    if IsLoggedIn.checkLogin(driver):
+        utforBiltyveri(driver)
+    else:
+        driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
+        utforBiltyveri(driver)
+
