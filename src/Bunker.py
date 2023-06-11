@@ -10,7 +10,7 @@ from . import IsLoggedIn
 
 
 def isBetweenTime(NordicMafiaTime):
-    if datetime.time(22, 30, 00) <= NordicMafiaTime <= datetime.time(22, 50, 00):
+    if datetime.time(21, 30, 00) <= NordicMafiaTime <= datetime.time(21, 50, 00):
         return True
     else:
         return False

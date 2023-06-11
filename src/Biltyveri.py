@@ -13,9 +13,15 @@ def sendCar(driver):
     currentCity = GetCity.getCity(driver)
     selectValue = random.randint(0, 5)
     time.sleep(sleepRandomLow())
-    driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']").click()
+    try:
+        driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']").click()
+    except:
+        print("Biltyveri action 0 went wrong")
     time.sleep(sleepRandomLow()/4)
-    select = Select(driver.find_element(By.NAME, "targetcity"))
+    try:
+        select = Select(driver.find_element(By.NAME, "targetcity"))
+    except:
+        print("Biltyveri action 0 went wrong")
     time.sleep(sleepRandomLow()/4)
     select.select_by_value(str(selectValue))
     time.sleep(sleepRandomLow()/4)

@@ -16,9 +16,15 @@ def utforUtpress(driver):
     if isCounting == False:
         # UTPRESSING START
         time.sleep(sleepRandomLow() / 3)
-        driver.find_element(By.ID, "sel_1").click()
+        try:
+            driver.find_element(By.ID, "sel_1").click()
+        except:
+            print("Biltyveri action 0 went wrong")
         time.sleep(sleepRandomLow() / 3)
-        driver.find_element(By.NAME, "submitBlackmail").click()
+        try:
+            driver.find_element(By.NAME, "submitBlackmail").click()
+        except:
+            print("Biltyveri action 0 went wrong")
         # UTPRESSING END
     else:
         print("Utpress timer is going")
