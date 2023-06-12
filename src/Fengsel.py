@@ -16,7 +16,7 @@ def brytUt(driver):
     AntiBot.checkAntiBot(driver)
     isCounting = CheckCountdown.checkCountdown(driver)
     # CHECK IF COUNTING
-    if isCounting == False:
+    if not isCounting:
         time.sleep(sleepRandomLow() / 2)
         # TRY CATCH/EXCEPT IN CASE OF ERROR
         try:
@@ -26,7 +26,7 @@ def brytUt(driver):
         if len(antallPersonerSomKanBrytestUt) > 0:
             # TRY CATCH/EXCEPT IN CASE OF ERROR
             try:
-                driver.find_elements(By.XPATH, "//a[contains(@href, 'index.php?p=jail&sort=bounty')]").click()
+                driver.find_element(By.LINK_TEXT, "DUSØR").click()
             except:
                 print("driver.find_elements(By.LINK_TEXT, Dusør) went wrong")
             # TRY CATCH/EXCEPT IN CASE OF ERROR

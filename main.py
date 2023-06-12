@@ -46,7 +46,7 @@ def doBotStuff():
 
 
 def startBot():
-    Login.login(driver)
+    Login.login(driver, settings["settings"][1]["Brukernavn"], settings["settings"][1]["Passord"])
     Kriminalitet.krim(driver, settings["settings"][2]["Kriminalitet"])
     Utpressing.utpress(driver, settings["settings"][2]["Utpressing"], settings["settings"][2]["UtpressingPerson"])
     FightClub.fightclub(driver, settings["settings"][2]["Fightclub"])
