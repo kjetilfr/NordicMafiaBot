@@ -2,7 +2,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 import time
 import random
-import jsonRead
+from Settings import jsonRead
 from src import *
 
 

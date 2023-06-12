@@ -5,22 +5,22 @@
             "Headless": 0
         },
         {
-            "Brukernavn": "dead",
-            "Passord": "krokodille2"
+            "Brukernavn": "Username",
+            "Passord": "Password"
         },
         {
-            "Kriminalitet": 5,
+            "Kriminalitet": 0,
             "Utpressing": 0,
-            "UtpressingPerson": "HurpaDurpa",
-            "Fightclub": 2,
-            "Biltyveri": 1,
+            "UtpressingPerson": "Test",
+            "Fightclub": 0,
+            "Biltyveri": 0,
             "Hasjplantasje": 0,
             "Organisert Kriminalitet": 0
         },
         {
             "LongTimeout": 0,
             "LongTimeoutTimerInHours": 8,
-            "LongTimeoutTimerStart": "01:02:03"
+            "LongTimeoutTimerStart": "00:00:00"
         }
     ]
 }

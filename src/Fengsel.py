@@ -36,7 +36,7 @@ def brytUt(driver):
                 print("driver.find_elements(By.LINK_TEXT, Bryt ut) went wrong")
             time.sleep(SleepRandom.sleepRandomLow() + 2)
             isCounting = CheckCountdown.checkCountdown(driver)
-            if isCounting == False:
+            if not isCounting:
                 brytUt(driver)
             else:
                 time.sleep(SleepRandom.sleepRandomLow() + 1)
