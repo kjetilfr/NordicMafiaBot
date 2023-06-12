@@ -1,0 +1,26 @@
+{
+    "settings": [
+        {
+            "Menytimer": 0,
+            "Headless": 0
+        },
+        {
+            "Brukernavn": "dead",
+            "Passord": "krokodille2"
+        },
+        {
+            "Kriminalitet": 5,
+            "Utpressing": 0,
+            "UtpressingPerson": "HurpaDurpa",
+            "Fightclub": 2,
+            "Biltyveri": 1,
+            "Hasjplantasje": 0,
+            "Organisert Kriminalitet": 0
+        },
+        {
+            "LongTimeout": 0,
+            "LongTimeoutTimerInHours": 8,
+            "LongTimeoutTimerStart": "01:02:03"
+        }
+    ]
+}
