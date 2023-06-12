@@ -17,7 +17,10 @@ def isBetweenTime(NordicMafiaTime):
 
 
 def checkClock(driver):
-    dateClock = driver.find_element(By.ID, "mainClock")
+    try:
+        dateClock = driver.find_element(By.ID, "mainClock")
+    except:
+        print("Biltyveri action 0 went wrong")
     clock = str(dateClock.get_attribute("innerHTML"))
     clock = clock[-8:]
     newTime = clock.split(":")
@@ -26,15 +29,27 @@ def checkClock(driver):
 
 
 def enterBunker(driver):
-    driver.find_element(By.LINK_TEXT, "Eiendom").click()
+    try:
+        driver.find_element(By.LINK_TEXT, "Eiendom").click()
+    except:
+        print('driver.find_element(By.LINK_TEXT, Eiendom).click() went wrong')
     IsLoggedIn.checkLogin(driver)
     AntiBot.checkAntiBot(driver)
     time.sleep(SleepRandom.sleepRandomLow() / 2)
-    select = Select(driver.find_element(By.NAME, "numhours"))
+    try:
+        select = Select(driver.find_element(By.NAME, "numhours"))
+    except:
+        print("select = Select(driver.find_element(By.NAME, numhours) went wrong")
     time.sleep(SleepRandom.sleepRandomLow() / 4)
-    select.select_by_value("2")
+    try:
+        select.select_by_value("2")
+    except:
+        print("select.select_by_value(2) went wrong")
     time.sleep(SleepRandom.sleepRandomLow() / 2)
-    driver.find_element(By.NAME, "enterOwnBunker").click()
+    try:
+        driver.find_element(By.NAME, "enterOwnBunker").click()
+    except:
+        print("driver.find_element(By.NAME, enterOwnBunker).click() went wrong")
     driver.switch_to.alert.accept()
     print("sleep for " + str(7200 + random.randint(50, 200)))
     time.sleep(7200 + random.randint(50, 200))

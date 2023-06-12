@@ -18,6 +18,7 @@ def brytUt(driver):
     if isCounting == False:
         time.sleep(sleepRandomLow() / 2)
         if len(driver.find_elements(By.LINK_TEXT, "Bryt ut")) > 0:
+            driver.find_element(By.LINK_TEXT, "Dusør").click()
             driver.find_element(By.LINK_TEXT, "Bryt ut").click()
             time.sleep(SleepRandom.sleepRandomLow() + 2)
             isCounting = CheckCountdown.checkCountdown(driver)
