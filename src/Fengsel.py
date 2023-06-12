@@ -15,11 +15,25 @@ def sleepRandomLow():
 def brytUt(driver):
     AntiBot.checkAntiBot(driver)
     isCounting = CheckCountdown.checkCountdown(driver)
+    # CHECK IF COUNTING
     if isCounting == False:
         time.sleep(sleepRandomLow() / 2)
-        if len(driver.find_elements(By.LINK_TEXT, "Bryt ut")) > 0:
-            driver.find_element(By.LINK_TEXT, "Dusør").click()
-            driver.find_element(By.LINK_TEXT, "Bryt ut").click()
+        # TRY CATCH/EXCEPT IN CASE OF ERROR
+        try:
+            antallPersonerSomKanBrytestUt = driver.find_elements(By.LINK_TEXT, "Bryt ut")
+        except:
+            print("driver.find_elements(By.LINK_TEXT, Bryt ut) went wrong")
+        if len(antallPersonerSomKanBrytestUt) > 0:
+            # TRY CATCH/EXCEPT IN CASE OF ERROR
+            try:
+                driver.find_elements(By.XPATH, "//a[contains(@href, 'index.php?p=jail&sort=bounty')]").click()
+            except:
+                print("driver.find_elements(By.LINK_TEXT, Dusør) went wrong")
+            # TRY CATCH/EXCEPT IN CASE OF ERROR
+            try:
+                driver.find_element(By.LINK_TEXT, "Bryt ut").click()
+            except:
+                print("driver.find_elements(By.LINK_TEXT, Bryt ut) went wrong")
             time.sleep(SleepRandom.sleepRandomLow() + 2)
             isCounting = CheckCountdown.checkCountdown(driver)
             if isCounting == False:
@@ -37,9 +51,17 @@ def brytUt(driver):
 
 def fengsel(driver):
     IsLoggedIn.checkLogin(driver)
-    driver.find_element(By.LINK_TEXT, "Fengsel").click()
+    # TRY CATCH/EXCEPT IN CASE OF ERROR
+    try:
+        driver.find_element(By.LINK_TEXT, "Fengsel").click()
+    except:
+        print("driver.find_element(By.LINK_TEXT, Fengsel).click() went wrong")
     if IsLoggedIn.checkLogin(driver):
         brytUt(driver)
     else:
-        driver.find_element(By.LINK_TEXT, "Fengsel").click()
+        # TRY CATCH/EXCEPT IN CASE OF ERROR
+        try:
+            driver.find_element(By.LINK_TEXT, "Fengsel").click()
+        except:
+            print("driver.find_element(By.LINK_TEXT, Fengsel).click() went wrong 2")
         brytUt(driver)

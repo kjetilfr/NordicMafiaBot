@@ -37,23 +37,23 @@ def doBotStuff():
     print("Start doBotStuff")
     timeDown()
     Bunker.gaaIBunkerCheck(driver)
-    Kriminalitet.krim(driver, settings["settings"][1]["Kriminalitet"])
-    Utpressing.utpress(driver, settings["settings"][1]["Utpressing"], settings["settings"][1]["UtpressingPerson"])
-    FightClub.fightclub(driver, settings["settings"][1]["Fightclub"])
-    Biltyveri.biltyveri(driver, settings["settings"][1]["Biltyveri"])
+    Kriminalitet.krim(driver, settings["settings"][2]["Kriminalitet"])
+    Utpressing.utpress(driver, settings["settings"][2]["Utpressing"], settings["settings"][2]["UtpressingPerson"])
+    FightClub.fightclub(driver, settings["settings"][2]["Fightclub"])
+    Biltyveri.biltyveri(driver, settings["settings"][2]["Biltyveri"])
     Fengsel.fengsel(driver)
     doBotStuff()
 
 
 def startBot():
     Login.login(driver)
-    Kriminalitet.krim(driver, settings["settings"][1]["Kriminalitet"])
-    Utpressing.utpress(driver, settings["settings"][1]["Utpressing"], settings["settings"][1]["UtpressingPerson"])
-    FightClub.fightclub(driver, settings["settings"][1]["Fightclub"])
-    Biltyveri.biltyveri(driver, settings["settings"][1]["Biltyveri"])
+    Kriminalitet.krim(driver, settings["settings"][2]["Kriminalitet"])
+    Utpressing.utpress(driver, settings["settings"][2]["Utpressing"], settings["settings"][2]["UtpressingPerson"])
+    FightClub.fightclub(driver, settings["settings"][2]["Fightclub"])
+    Biltyveri.biltyveri(driver, settings["settings"][2]["Biltyveri"])
     Bunker.gaaIBunkerCheck(driver)
     Fengsel.fengsel(driver)
     doBotStuff()
 
 
-# startBot()
+startBot()
