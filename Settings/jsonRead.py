@@ -1,11 +1,19 @@
 import json
 
 
+def smallLoad():
+    f = open('./Settings/settings.json')
+    data = json.load(f)
+    f.close()
+    return data
+
+
+
 def loadProfile():
     load = int(input("Last inn profil: (1 for å laste profil, 0 for å lage ny profil) "))
 
     if load == 1:
-        f = open('settings.json')
+        f = open('./Settings/settings.json')
 
         data = json.load(f)
 
@@ -31,7 +39,7 @@ def loadProfile():
         # LongTimeoutInHours = input("Dersom ja hvor lenge skal botten ta pause (i timer): ")
         # LongTimeoutStart = input("Når klokkeslett skal botten ta pause (HH:MM:SS format): ")
 
-        with open("settings.json", "r+") as f:
+        with open("./Settings/settings.json", "r+") as f:
             data = json.load(f)
             data['settings'][0]['Menytimer'] = int(Menytimer)
             data['settings'][0]['Headless'] = int(Headless)
@@ -57,7 +65,7 @@ def loadProfile():
             f.truncate()
             f.close()
             # reopen file
-            f = open('settings.json')
+            f = open('./Settings/settings.json')
 
             data = json.load(f)
             f.close()

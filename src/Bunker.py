@@ -7,6 +7,7 @@ from . import AntiBot
 from . import SleepRandom
 from . import CheckCountdown
 from . import IsLoggedIn
+from . import GetTime
 
 
 def isBetweenTime(NordicMafiaTime):
@@ -14,18 +15,6 @@ def isBetweenTime(NordicMafiaTime):
         return True
     else:
         return False
-
-
-def checkClock(driver):
-    try:
-        dateClock = driver.find_element(By.ID, "mainClock")
-    except:
-        print("Biltyveri action 0 went wrong")
-    clock = str(dateClock.get_attribute("innerHTML"))
-    clock = clock[-8:]
-    newTime = clock.split(":")
-    nordicMafiaTimeTimeFormat = datetime.time(int(newTime[0]), int(newTime[1]), int(newTime[2]))
-    return nordicMafiaTimeTimeFormat
 
 
 def enterBunker(driver):
@@ -57,7 +46,7 @@ def enterBunker(driver):
 
 def gaaIBunkerCheck(driver):
     IsLoggedIn.checkLogin(driver)
-    if isBetweenTime(checkClock(driver)):
+    if isBetweenTime(GetTime.checkClock(driver)):
         isCounting = CheckCountdown.checkCountdown(driver)
         if isCounting == False:
             enterBunker(driver)

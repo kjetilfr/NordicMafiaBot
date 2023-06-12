@@ -42,11 +42,13 @@ def doBotStuff():
     FightClub.fightclub(driver, settings["settings"][2]["Fightclub"])
     Biltyveri.biltyveri(driver, settings["settings"][2]["Biltyveri"])
     Fengsel.fengsel(driver)
+    if settings["settings"][3]["LongTimeout"] == 1:
+        LongBreak.isBetweenTime(driver)
     doBotStuff()
 
 
 def startBot():
-    Login.login(driver, settings["settings"][1]["Brukernavn"], settings["settings"][1]["Passord"])
+    Login.login(driver)
     Kriminalitet.krim(driver, settings["settings"][2]["Kriminalitet"])
     Utpressing.utpress(driver, settings["settings"][2]["Utpressing"], settings["settings"][2]["UtpressingPerson"])
     FightClub.fightclub(driver, settings["settings"][2]["Fightclub"])

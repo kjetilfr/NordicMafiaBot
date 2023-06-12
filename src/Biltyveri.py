@@ -13,7 +13,7 @@ from . import DoRandomStuff
 def sendCar(driver):
     currentCity = GetCity.getCity(driver)
     selectValue = random.randint(0, 5)
-    time.sleep(sleepRandomLow())
+    time.sleep(sleepRandomLow() / 3)
     # TRY CATCH/EXCEPT IN CASE OF ERROR
     try:
         driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']").click()
@@ -25,9 +25,9 @@ def sendCar(driver):
         select = Select(driver.find_element(By.NAME, "targetcity"))
     except:
         print("select = Select(driver.find_element(By.NAME, targetcity)) went wrong")
-    time.sleep(sleepRandomLow()/4)
+    time.sleep(sleepRandomLow() / 4)
     select.select_by_value(str(selectValue))
-    time.sleep(sleepRandomLow()/4)
+    time.sleep(sleepRandomLow() / 4)
     targetCity = select.first_selected_option.text
     print("'" + currentCity + "'" + " " + "'" + targetCity + "'")
     # if trying to send to current city restart send function
