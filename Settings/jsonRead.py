@@ -35,9 +35,9 @@ def loadProfile():
         # Hasjplantasje = input("Hasjplantasje: (Sett til 0 kommer senere) ")
         # OrganisertKrim = input("Organisert Kriminalitet: (Sett til 0 kommer senere) ")
 
-        # LongTimeout = input("Skal botten ta ei lang pause?: (1 for ja, 0 for nei) ")
-        # LongTimeoutInHours = input("Dersom ja hvor lenge skal botten ta pause (i timer): ")
-        # LongTimeoutStart = input("Når klokkeslett skal botten ta pause (HH:MM:SS format): ")
+        LongTimeout = input("Skal botten ta ei lang pause?: (1 for ja, 0 for nei) ")
+        LongTimeoutInHours = input("Dersom ja hvor lenge skal botten ta pause (i timer): ")
+        LongTimeoutStart = input("Når klokkeslett skal botten ta pause (HH:MM:SS format): ")
 
         with open("./Settings/settings.json", "r+") as f:
             data = json.load(f)
@@ -56,9 +56,9 @@ def loadProfile():
             # data['settings'][2]['Hasjplantasje'] = int(Hasjplantasje)
             # data['settings'][2]['Organisert Kriminalitet'] = int(OrganisertKrim)
 
-            # data['settings'][3]['LongTimeout'] = int(LongTimeout)
-            # data['settings'][3]['LongTimeoutTimerInHours'] = int(LongTimeoutInHours)
-            # data['settings'][3]['LongTimeoutTimerStart'] = LongTimeoutStart
+            data['settings'][3]['LongTimeout'] = int(LongTimeout)
+            data['settings'][3]['LongTimeoutTimerInHours'] = int(LongTimeoutInHours)
+            data['settings'][3]['LongTimeoutTimerStart'] = LongTimeoutStart
 
             f.seek(0)
             json.dump(data, f, indent=4)
