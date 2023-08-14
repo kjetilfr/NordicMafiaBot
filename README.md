@@ -5,7 +5,7 @@ pip install ultralytics
 
 pip install byerecaptcha
 
-
+pip install fake-useragent
 
 Nordicmafia bot for 2023 og utover.
 
