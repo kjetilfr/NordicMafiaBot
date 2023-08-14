@@ -1,4 +1,12 @@
 # NordicMafiaBot
+pip install selenium
+
+pip install ultralytics
+
+pip install byerecaptcha
+
+
+
 Nordicmafia bot for 2023 og utover.
 
 Masse settings du kan velge selv hva du vil at botten skal utføre.
