@@ -165,7 +165,9 @@ def solve_grid(driver):
             time.sleep(1)
             solve_grid(driver)
         else:
+            print("StartRecaptcha")
             solveRecaptcha(driver)
+            print("DoneRecaptcha")
             # download_image(driver)
             # click_items_3x3(driver)
             # driver.switch_to.parent_frame()

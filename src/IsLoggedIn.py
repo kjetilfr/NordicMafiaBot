@@ -8,7 +8,7 @@ from . import Login
 def checkLogin(driver):
     try:
         #Wait for load (1 second?) until element is located
-        elem = WebDriverWait(driver, 1).until(
+        elem = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "usernameCont"))
             # This is a dummy element
         )

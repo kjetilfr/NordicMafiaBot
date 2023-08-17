@@ -152,18 +152,24 @@ def utforBiltyveri(driver, biltyveriAction):
                 print("driver.find_element(By.ID, rowid_table_select_gtaaction3).click() went wrong")
         # TRY CATCH/EXCEPT IN CASE OF ERROR
         try:
+            print("Test1")
             biltyveriSuccess = driver.find_elements(By.CLASS_NAME, "successBox")
             if len(biltyveriSuccess) > 0:
                 time.sleep(sleepRandomLow() / 2)
                 # TRY TO SEND CAR AGAIN
                 #sendCar(driver)
+                print("Test2")
                 carTR = driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']")
                 carName = carTR.find_element(By.CSS_SELECTOR, "tr>td.carfield>div").get_attribute("innerHTML")
+                print(carName)
                 carSkade = carTR.find_element(By.CSS_SELECTOR, "tr>td:nth-child(2)>div").get_attribute("innerHTML")
+                print(carSkade)
                 if carName == "Mercedes-Benz SL 500" and GetCity.getCity(driver) == "Helsinki":
                     # sendCarSpesificCity(driver)
+                    print(carSkade)
                     sellCar(driver)
                 else:
+                    print(int(carSkade.replaceAll("%", "")))
                     if int(carSkade.replaceAll("%", "")) < 20:
                         sendCar(driver)
                     else:
