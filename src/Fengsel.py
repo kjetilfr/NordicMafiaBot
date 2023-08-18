@@ -72,6 +72,7 @@ def brytUtPerson(driver):
                     print("Ingen i gjeng å bryte ut")
                     try:
                         driver.find_element(By.LINK_TEXT, "DUSØR").click()
+                        time.sleep(0.2)
                     except:
                         print("driver.find_elements(By.LINK_TEXT, Dusør) went wrong")
                     # TRY CATCH/EXCEPT IN CASE OF ERROR

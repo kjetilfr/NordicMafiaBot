@@ -51,9 +51,11 @@ def loadProfile():
             UtpressingPerson = input("Dersom ja brukernavn på den som skal utpresses: ")
         Fightclub = input("Fightclub: (0 for ingen, 1 for 11 pullups, 2 for 5 benkpress eller 3 for 25 pushups): ")
         Biltyveri = input("Biltyveri: (0 for ingen, 1 for bil på gata, 2 for privat parkeringsplass, 3 for bilnøkler eller 4 for offentlig parkeringsplass): ")
+        Fengsel = input("Bryte ut folk fra fengsel: (1 for ja, 0 for nei) ")
         Hasjplantasje = input("Hasjplantasje: (1 for å invistere i hasj, 0 for å sette penger i banken): ")
         OrganisertKrim = input("Organisert Kriminalitet: (1 for ja, 0 for nei): ")
         CDG = input("CDG: (1 for ja, 0 for nei): ")
+        Livvakt = input("Livvakt utleiie: (1 for ja, 0 for nei): ")
         if CDG == 1:
             CDGPerson = input("Brukernavn på den som skal utpresses: ")
             Gangsters = input("Gangsters på den som skal sendes: ")
@@ -85,7 +87,9 @@ def loadProfile():
                 data[profileName][2]['UtpressingPerson'] = UtpressingPerson
             data[profileName][2]['Fightclub'] = int(Fightclub)
             data[profileName][2]['Biltyveri'] = int(Biltyveri)
+            data[profileName][2]['Fengsel'] = int(Fengsel)
             data[profileName][2]['Hasjplantasje'] = int(Hasjplantasje)
+            data[profileName][2]['Livvakt'] = int(Livvakt)
             data[profileName][2]['Organisert Kriminalitet'] = int(OrganisertKrim)
             data[profileName][2]['Filmproduksjon'] = int(Filmproduksjon)
             if CDG == 1:

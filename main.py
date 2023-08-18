@@ -61,7 +61,8 @@ def doBotStuff():
         if jsonData[2]["Filmproduksjon"] == 1:
             Filmproduksjon.filmProd(driver)
         Biltyveri.biltyveri(driver, jsonData[2]["Biltyveri"])
-        Fengsel.fengsel(driver)
+        if jsonData[2]["Fengsel"] == 1:
+            Fengsel.fengsel(driver)
         if jsonData[3]["LongTimeout"] == 1:
             LongBreak.isBetweenTime(driver)
 
@@ -88,7 +89,8 @@ def doBotStuffMenyTimer():
         if GetTimer.getTimer(driver, "Fightclub") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
             FightClub.fightclub(driver, jsonData[2]["Fightclub"])
         if GetTimer.getTimer(driver, "Livvakter") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
-            Livvaktutleie.livvaktutleie(driver)
+            if jsonData[2]["Livvakt"] == 1:
+                Livvaktutleie.livvaktutleie(driver)
         if jsonData[2]["Organisert Kriminalitet"] == 1:
             if GetTimer.getTimer(driver, "Organisert Kriminalitet") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
                 OrganisertKriminalitet.orgKrim(driver)
@@ -104,7 +106,8 @@ def doBotStuffMenyTimer():
             if GetTimer.getTimer(driver, "Kriminalitet") == 0:
                 doBotStuffMenyTimer()
             else:
-                Fengsel.fengsel(driver)
+                if jsonData[2]["Fengsel"] == 1:
+                    Fengsel.fengsel(driver)
         if jsonData[3]["LongTimeout"] == 1:
             LongBreak.isBetweenTime(driver)
 
@@ -112,7 +115,8 @@ def doBotStuffMenyTimer():
 def startBot():
     Login.login(driver)
     IsInBunker.bunker(driver)
-    Livvaktutleie.livvaktutleie(driver)
+    if jsonData[2]["Livvakt"] == 1:
+        Livvaktutleie.livvaktutleie(driver)
     Bank.bankIdealAmount(driver)
     if jsonData[2]["Hasjplantasje"] == 1:
         Hasjplantasje.hasj(driver)
@@ -128,12 +132,14 @@ def startBot():
         Filmproduksjon.filmProd(driver)
     Biltyveri.biltyveri(driver, jsonData[2]["Biltyveri"])
     Bunker.gaaIBunkerCheck(driver)
-    Fengsel.fengsel(driver)
+    if jsonData[2]["Fengsel"] == 1:
+        Fengsel.fengsel(driver)
     doBotStuff()
 
 
 def startBotMenyTimer():
     Login.login(driver)
+    IsInBunker.bunker(driver)
     if GetTimer.getTimer(driver, "Fengsel") == 0:
         IsInBunker.bunker(driver)
         Bunker.gaaIBunkerCheck(driver)
@@ -144,7 +150,8 @@ def startBotMenyTimer():
             if GetMoney.getMoney(driver) > 3000000:
                 Bank.depositXAmount(driver, 3000000)
     if GetTimer.getTimer(driver, "Livvakter") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
-        Livvaktutleie.livvaktutleie(driver)
+        if jsonData[2]["Livvakt"] == 1:
+            Livvaktutleie.livvaktutleie(driver)
     if GetTimer.getTimer(driver, "Kriminalitet") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
         Kriminalitet.krim(driver, jsonData[2]["Kriminalitet"])
     if GetTimer.getTimer(driver, "Utpressing") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
@@ -163,7 +170,8 @@ def startBotMenyTimer():
     if GetTimer.getTimer(driver, "Biltyveri") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
         Biltyveri.biltyveri(driver, jsonData[2]["Biltyveri"])
     if GetTimer.getTimer(driver, "Fengsel") == 0:
-        Fengsel.fengsel(driver)
+        if jsonData[2]["Fengsel"] == 1:
+            Fengsel.fengsel(driver)
     doBotStuffMenyTimer()
 
 

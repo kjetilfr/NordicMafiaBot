@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
 import datetime
+import time
 
 
 def checkClock(driver):
     try:
+        time.sleep(0.3)
         dateClock = driver.find_element(By.ID, "mainClock")
         clock = str(dateClock.get_attribute("innerHTML"))
         clock = clock[-8:]
