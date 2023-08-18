@@ -166,7 +166,7 @@ def utforBiltyveri(driver, biltyveriAction):
                     sellCar(driver)
                 else:
                     print(int(carSkade.replace("%", "")))
-                    if int(carSkade.replace("%", "")) < 20:
+                    if int(carSkade.replace("%", "")) < 20 and carName != "Volkswagen Polo":
                         sendCar(driver)
                     else:
                         sellCar(driver)
