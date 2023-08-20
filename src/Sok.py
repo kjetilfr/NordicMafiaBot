@@ -110,6 +110,8 @@ def start_sok_personer(driver):
         victim_field.send_keys(person)
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "dosearch"))).click()
         time.sleep(0.2)
+    time.sleep(1)
+    Bank.depositAll(driver)
 
 
 def start_sok_varger(driver):
@@ -122,6 +124,8 @@ def start_sok_varger(driver):
         victim_field.send_keys(person)
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "dosearch"))).click()
         time.sleep(0.2)
+    time.sleep(1)
+    Bank.depositAll(driver)
 
 
 def start_sok_array(person_array, driver):
