@@ -8,6 +8,7 @@ from . import CheckCountdown
 from . import IsLoggedIn
 from . SleepRandom import sleepRandomLow
 from . import DoRandomStuff
+from . import GetMoney, Bank
 
 
 def sendCar(driver):
@@ -167,7 +168,9 @@ def utforBiltyveri(driver, biltyveriAction):
                 else:
                     print(int(carSkade.replace("%", "")))
                     if int(carSkade.replace("%", "")) < 20 and carName != "Volkswagen Polo":
-                        sendCar(driver)
+                        if GetMoney.getMoney(driver) < 20000:
+                            Bank.withdrawXAmount(driver, 100000)
+                            sendCar(driver)
                     else:
                         sellCar(driver)
         except:

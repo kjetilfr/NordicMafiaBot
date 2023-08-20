@@ -6,6 +6,7 @@ from . import AntiBot
 from . import CheckCountdown
 from . import SleepRandom
 from . import IsLoggedIn
+from . import Sok
 
 
 def sleepRandomLow():
@@ -33,6 +34,8 @@ def brytUtPerson(driver):
             except:
                 print("driver.find_elements(By.LINK_TEXT, Bryt ut) went wrong")
             if len(antallPersonerSomKanBrytestUt) > 0:
+                # Legg til ukjente folk fra fengsel i users.json fila
+                Sok.write_to_file(Sok.fengsel_players(driver))
                 # TRY CATCH/EXCEPT IN CASE OF ERROR
                 # Prøver å bryte ut fra gjeng
                 try:
@@ -52,6 +55,7 @@ def brytUtPerson(driver):
                             print("Ingen i gjeng å bryte ut")
                             try:
                                 driver.find_element(By.LINK_TEXT, "DUSØR").click()
+                                time.sleep(0.2)
                             except:
                                 print("driver.find_elements(By.LINK_TEXT, Dusør) went wrong")
                             # TRY CATCH/EXCEPT IN CASE OF ERROR
@@ -91,7 +95,7 @@ def brytUtPerson(driver):
                     print("Fengsel timer is going")
         else:
             time.sleep(random.randint(1, 2))
-        if random.randint(1, 3) == 2:
+        if random.randint(2, 2) == 2:
             DoRandomStuff.doRandomStuff(driver)
     else:
         print("Fengsel timer is going")

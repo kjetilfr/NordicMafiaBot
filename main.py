@@ -1,13 +1,10 @@
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 from selenium import webdriver
 import time
 import random
 from Settings import jsonRead
 from src import *
-from selenium.webdriver.chrome.options import Options
 from fake_useragent import UserAgent
-import json
+import datetime
 
 jsonData = jsonRead.loadProfile()
 
@@ -31,9 +28,8 @@ options.add_argument(f'--user-agent={user_agent}')
 options.set_preference('intl.accept_languages', 'en-GB')
 
 driver = webdriver.Firefox(options=options)
-# driver.get("https://www.google.com/recaptcha/api2/demo")
 driver.get("https://nordicmafia.org")
-# AntiBot.checkAntiBot(driver)
+
 
 def timeDown():
     sleepTime = random.randint(230, 280)
@@ -104,10 +100,13 @@ def doBotStuffMenyTimer():
             Biltyveri.biltyveri(driver, jsonData[2]["Biltyveri"])
         if GetTimer.getTimer(driver, "Fengsel") == 0:
             if GetTimer.getTimer(driver, "Kriminalitet") == 0:
-                doBotStuffMenyTimer()
+                pass
             else:
                 if jsonData[2]["Fengsel"] == 1:
                     Fengsel.fengsel(driver)
+                    if datetime.time(18, 50, 00) <= GetTime.checkClock(driver) <= datetime.time(18, 51, 00):
+                        Sok.start_sok_personer(driver)
+                        Sok.start_sok_varger(driver)
         if jsonData[3]["LongTimeout"] == 1:
             LongBreak.isBetweenTime(driver)
 

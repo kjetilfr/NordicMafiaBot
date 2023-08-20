@@ -84,7 +84,7 @@ def cdg(driver, username, gangsters):
         #Check if win or lose
         time.sleep(1)
         if 14356 <= GetTimer.getTimer(driver, "Club dè gangster") <= 14600 and str(driver.find_element(By.CSS_SELECTOR, "div.defpadding>span:nth-child(2)").get_attribute("innerHTML")) == "mislykket":
-            Kuleoverforing.overfor1Kule(driver, data[2]["CDGPerson"], 75000000)
+            Kuleoverforing.overfor1Kule(driver, data[2]["CDGPerson"], 30000000)
     except:
         print("driver.find_element(By.LINK_TEXT, Club dè Gangster).click() went wrong")
         if IsLoggedIn.checkLogin(driver):
