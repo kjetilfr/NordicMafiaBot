@@ -170,7 +170,7 @@ def utforBiltyveri(driver, biltyveriAction):
                     if int(carSkade.replace("%", "")) < 20 and carName != "Volkswagen Polo":
                         if GetMoney.getMoney(driver) < 20000:
                             Bank.withdrawXAmount(driver, 100000)
-                            sendCar(driver)
+                        sendCar(driver)
                     else:
                         sellCar(driver)
         except:
