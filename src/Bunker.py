@@ -43,7 +43,6 @@ def enterBunker(driver):
         driver.switch_to.alert.accept()
     except:
         print("failed to accept bunker invite")
-    driver.switch_to.alert.accept()
     print("sleep for " + str(7200 + random.randint(50, 200)))
     time.sleep(7200 + random.randint(50, 200))
 

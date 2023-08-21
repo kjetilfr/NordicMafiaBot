@@ -163,10 +163,8 @@ def utforBiltyveri(driver, biltyveriAction):
                 carSkade = carTR.find_element(By.CSS_SELECTOR, "tr>td:nth-child(3)>div").get_attribute("innerHTML")
                 if carName == "Mercedes-Benz SL 500" and GetCity.getCity(driver) == "Helsinki":
                     # sendCarSpesificCity(driver)
-                    print(carSkade)
                     sellCar(driver)
                 else:
-                    print(int(carSkade.replace("%", "")))
                     if int(carSkade.replace("%", "")) < 20 and carName != "Volkswagen Polo":
                         if GetMoney.getMoney(driver) < 20000:
                             Bank.withdrawXAmount(driver, 100000)
@@ -175,15 +173,6 @@ def utforBiltyveri(driver, biltyveriAction):
                         sellCar(driver)
         except:
             print("biltyveriSuccess = driver.find_elements(By.CLASS_NAME, successBox) went wrong")
-            #print("Retrying sending car")
-            #sendCar(driver)
-            carName = driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']")
-            carName = carName.find_element(By.CSS_SELECTOR, "tr>td.carfield>div").get_attribute("innerHTML")
-            if carName == "Mercedes-Benz SL 500" and GetCity.getCity(driver) == "Helsinki":
-                #sendCarSpesificCity(driver)
-                sellCar(driver)
-            else:
-                sellCar(driver)
     else:
         time.sleep(sleepRandomLow())
         print("Car timer is going")
