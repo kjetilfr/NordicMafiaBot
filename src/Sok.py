@@ -62,10 +62,11 @@ def write_to_file(player_array):
     with open("./Settings/users.json", "r+") as f:
         data = json.load(f)
         users = data["users"]
+        vargs = data["npcs"]
         for player in player_array:
             if not player in users:
-                print(player)
-                users.append(player)
+                if not player in vargs:
+                    users.append(player)
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()
@@ -150,3 +151,17 @@ def sekund_sok(person, antall_sekunder, driver):
     time.sleep(0.2)
 
 
+def aktive_spillere(driver):
+    IsLoggedIn.checkLogin(driver)
+    header = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "helpHeader")))
+
+    WebDriverWait(header, 10).until(EC.presence_of_element_located((By.TAG_NAME, "a"))).click()
+
+    content_box = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.contentBox")))
+
+    username_elements = content_box.find_elements(By.CSS_SELECTOR, "a")
+
+    users = []
+    for username in username_elements:
+        users.append(username.get_attribute("innerHTML"))
+    return users

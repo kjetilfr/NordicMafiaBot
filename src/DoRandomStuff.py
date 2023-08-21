@@ -9,7 +9,7 @@ from . import Sok
 def doRandomStuff(driver):
     try:
         IsLoggedIn.checkLogin(driver)
-        randomAction = random.randint(0, 5)
+        randomAction = random.randint(0, 6)
         if randomAction == 0:
             driver.find_element(By.LINK_TEXT, "Handlingslogg").click()
             #trykk på profila til den som hjeleper fra fengsel
@@ -39,6 +39,9 @@ def doRandomStuff(driver):
         elif randomAction == 4:
             # Gå til statetstikk og finn nye spillere
             Sok.write_to_file(Sok.new_players(driver))
+        elif randomAction == 5:
+            # Gå til aktive spillere
+            Sok.write_to_file(Sok.aktive_spillere(driver))
         else:
             driver.find_element(By.LINK_TEXT, "Generelt forum").click()
             IsLoggedIn.checkLogin(driver)
