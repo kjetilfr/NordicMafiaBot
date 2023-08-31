@@ -1,10 +1,13 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
 def getTimer(driver, timerType):
     time.sleep(0.5)
     try:
+        time.sleep(1)
         allTimers = driver.find_elements(By.CSS_SELECTOR, "div.actionMenuContainer>div")
         for t in allTimers:
             timer = t.get_attribute("data-tooltip-content")

@@ -43,8 +43,7 @@ def enterBunker(driver):
         driver.switch_to.alert.accept()
     except:
         print("failed to accept bunker invite")
-    print("sleep for " + str(7200 + random.randint(50, 200)))
-    time.sleep(7200 + random.randint(50, 200))
+
 
 
 def gaaIBunkerCheck(driver):
@@ -53,8 +52,19 @@ def gaaIBunkerCheck(driver):
         isCounting = CheckCountdown.checkCountdown(driver)
         if isCounting == False:
             enterBunker(driver)
+            time.sleep(4)
+            if len(driver.find_elements(By.NAME, "dobuyout")) > 1:
+                print("sleep for " + str(7200 + random.randint(50, 200)))
+                time.sleep(7200 + random.randint(50, 200))
+            else:
+                pass
         else:
             enterBunker(driver)
-            time.sleep(300 + random.randint(10, 30))
+            time.sleep(4)
+            if len(driver.find_elements(By.NAME, "dobuyout")) > 1:
+                print("sleep for " + str(7200 + random.randint(50, 200)))
+                time.sleep(7200 + random.randint(50, 200))
+            else:
+                pass
     else:
         print("Some kind of timer is going")

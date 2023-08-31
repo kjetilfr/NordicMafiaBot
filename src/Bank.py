@@ -1,5 +1,6 @@
 import random
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
 from . import GetMoney
@@ -8,9 +9,9 @@ from . import GetMoney
 def getBankValue(driver):
     try:
         if not driver.current_url == "https://nordicmafia.org/index.php?p=bank" or driver.current_url == "https://www.nordicmafia.org/index.php?p=bank":
-            driver.find_element(By.LINK_TEXT, "Bank").click()
+            WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "Bank"))).click()
         time.sleep(0.5)
-        bankValue = driver.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(3)>td:nth-child(2)>span").get_attribute("innerHTML")
+        bankValue = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "tbody>tr:nth-child(3)>td:nth-child(2)>span"))).get_attribute("innerHTML")
         bankValueWithComma = str(bankValue)[:-3]
         bankValueINT = int(bankValueWithComma.replace(",", ""))
         return bankValueINT
@@ -22,11 +23,11 @@ def getBankValue(driver):
 def depositXAmount(driver, amount):
     try:
         if not driver.current_url == "https://nordicmafia.org/index.php?p=bank" or driver.current_url == "https://www.nordicmafia.org/index.php?p=bank":
-            driver.find_element(By.LINK_TEXT, "Bank").click()
+            WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "Bank"))).click()
         time.sleep(0.5)
-        belopField = driver.find_element(By.NAME, "depositAmount")
+        belopField = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.NAME, "depositAmount")))
         belopField.send_keys(amount)
-        driver.find_element(By.NAME, "depositSingle").click()
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.NAME, "depositSingle"))).click()
     except:
         print("Failed deposit X")
 
@@ -34,20 +35,20 @@ def depositXAmount(driver, amount):
 def withdrawXAmount(driver, amount):
     try:
         if not driver.current_url == "https://nordicmafia.org/index.php?p=bank" or driver.current_url == "https://www.nordicmafia.org/index.php?p=bank":
-            driver.find_element(By.LINK_TEXT, "Bank").click()
+            WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "Bank"))).click()
         time.sleep(0.5)
-        belopField = driver.find_element(By.NAME, "withdrawAmount")
+        belopField = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.NAME, "withdrawAmount")))
         belopField.send_keys(amount)
-        driver.find_element(By.NAME, "withdrawSingle").click()
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.NAME, "withdrawSingle"))).click()
     except:
         print("Failed Withdraw X")
 
 def withdrawAll(driver):
     try:
         if not driver.current_url == "https://nordicmafia.org/index.php?p=bank" or driver.current_url == "https://www.nordicmafia.org/index.php?p=bank":
-            driver.find_element(By.LINK_TEXT, "Bank").click()
+            WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "Bank"))).click()
         time.sleep(0.5)
-        driver.find_element(By.NAME, "withdrawAll").click()
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.NAME, "withdrawAll"))).click()
         return True
     except:
         print("Failed ta ut")
@@ -56,10 +57,11 @@ def withdrawAll(driver):
 
 def depositAll(driver):
     try:
+        time.sleep(0.4)
         if not driver.current_url == "https://nordicmafia.org/index.php?p=bank" or driver.current_url == "https://www.nordicmafia.org/index.php?p=bank":
-            driver.find_element(By.LINK_TEXT, "Bank").click()
+            WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "Bank"))).click()
         time.sleep(0.5)
-        driver.find_element(By.NAME, "depositAll").click()
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.NAME, "depositAll"))).click()
         return True
     except:
         print("Failed sett inn")
@@ -69,7 +71,7 @@ def depositAll(driver):
 def bankIdealAmount(driver):
     try:
         if not driver.current_url == "https://nordicmafia.org/index.php?p=bank" or driver.current_url == "https://www.nordicmafia.org/index.php?p=bank":
-            driver.find_element(By.LINK_TEXT, "Bank").click()
+            WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "Bank"))).click()
         time.sleep(0.5)
         if getBankValue(driver) > 500000000:
             withdrawXAmount(driver, getBankValue(driver) - 500000000)

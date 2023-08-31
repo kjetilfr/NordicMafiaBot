@@ -69,7 +69,11 @@ def doBotStuffMenyTimer():
         time.sleep(20)
         AntiBot.checkAntiBot(driver)
         IsLoggedIn.checkLogin(driver)
+        IsInBunker.bunker(driver)
         if GetTimer.getTimer(driver, "Fengsel") == 0:
+            #if datetime.time(18, 57, 00) <= GetTime.checkClock(driver) <= datetime.time(18, 58, 00):
+            #    Sok.start_sok_personer(driver)
+            #    Sok.start_sok_varger(driver)
             Bunker.gaaIBunkerCheck(driver)
             if GetMoney.getMoney(driver) > 1200000:
                 Bank.bankIdealAmount(driver)
@@ -96,17 +100,14 @@ def doBotStuffMenyTimer():
         if jsonData[2]["CDG"] == 1:
             if GetTimer.getTimer(driver, "Club dè gangster") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
                 CDG.cdg(driver, jsonData[2]["CDGPerson"], jsonData[2]["Gangstere"])
-        if GetTimer.getTimer(driver, "Biltyveri") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0:
+        if GetTimer.getTimer(driver, "Biltyveri") == 0 and GetTimer.getTimer(driver, "Fengsel") == 0  and not datetime.time(18, 50, 00) <= GetTime.checkClock(driver) <= datetime.time(19, 10, 00):
             Biltyveri.biltyveri(driver, jsonData[2]["Biltyveri"])
         if GetTimer.getTimer(driver, "Fengsel") == 0:
             if GetTimer.getTimer(driver, "Kriminalitet") == 0:
                 pass
             else:
-                if jsonData[2]["Fengsel"] == 1:
+                if jsonData[2]["Fengsel"] == 1 and not datetime.time(18, 50, 00) <= GetTime.checkClock(driver) <= datetime.time(19, 10, 00):
                     Fengsel.fengsel(driver)
-                    if datetime.time(18, 50, 00) <= GetTime.checkClock(driver) <= datetime.time(18, 51, 00):
-                        Sok.start_sok_personer(driver)
-                        Sok.start_sok_varger(driver)
         if jsonData[3]["LongTimeout"] == 1:
             LongBreak.isBetweenTime(driver)
 

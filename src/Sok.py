@@ -1,6 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver import Keys
 from . import IsLoggedIn
 from . import Bank
@@ -58,7 +59,6 @@ def dead_players(driver):
 
 def write_to_file(player_array):
     print("writing to file")
-    print(player_array)
     with open("./Settings/users.json", "r+") as f:
         data = json.load(f)
         users = data["users"]
@@ -74,6 +74,7 @@ def write_to_file(player_array):
 
 
 def write_to_file_dead_players(player_array):
+    print("Removing dead players")
     with open("./Settings/users.json", "r+") as f:
         data = json.load(f)
         users = data["users"]
@@ -98,10 +99,10 @@ def count_users():
     f = open('./Settings/users.json')
     data = json.load(f)
     f.close()
-    return len(data["users"])
+    return int(len(data["users"]))
 
 
-def start_sok_personer(driver):
+def start_aktivt_sok_personer(driver):
     Bank.withdrawAll(driver)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Aktiv detektiv"))).click()
     data = read_file()
@@ -115,7 +116,7 @@ def start_sok_personer(driver):
     Bank.depositAll(driver)
 
 
-def start_sok_varger(driver):
+def start_aktivt_sok_varger(driver):
     Bank.withdrawAll(driver)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Aktiv detektiv"))).click()
     data = read_file()
@@ -128,6 +129,49 @@ def start_sok_varger(driver):
     time.sleep(1)
     Bank.depositAll(driver)
 
+def start_vanlig_sok_personer(driver):
+    Bank.withdrawAll(driver)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Drep"))).click()
+    data = read_file()
+    personer = data["users"]
+    i = 0
+    while i < len(personer) / 3:
+        driver.get("https://nordicmafia.org/index.php?p=kill")
+        victim_field = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "detectivename")))
+        driver.find_element(By.NAME, "citychoice").click()
+        victim_field.send_keys(personer[0])
+        victim_field.send_keys(", ")
+        victim_field.send_keys(personer[1])
+        victim_field.send_keys(", ")
+        victim_field.send_keys(personer[2])
+        personer.pop(0)
+        personer.pop(0)
+        personer.pop(0)
+        WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "dosearch"))).click()
+        i += 1
+        time.sleep(0.02)
+    time.sleep(1)
+    Bank.depositAll(driver)
+
+
+def start_vanlig_sok_varger(driver):
+    Bank.withdrawAll(driver)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Drep"))).click()
+    data = read_file()
+    varger = data["npcs"]
+    i = 0
+    while i < len(varger):
+        driver.get("https://nordicmafia.org/index.php?p=kill")
+        victim_field = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "detectivename")))
+        driver.find_element(By.NAME, "citychoice").click()
+        victim_field.send_keys(varger[0])
+        varger.pop(0)
+        WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "dosearch"))).click()
+        i += 1
+        time.sleep(0.02)
+    time.sleep(1)
+    Bank.depositAll(driver)
+
 
 def start_sok_array(person_array, driver):
     Bank.withdrawAll(driver)
@@ -137,6 +181,7 @@ def start_sok_array(person_array, driver):
         victim_field.send_keys(person)
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "dosearch"))).click()
         time.sleep(0.2)
+    Bank.depositAll(driver)
 
 
 def sekund_sok(person, antall_sekunder, driver):

@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import random
 import datetime
@@ -18,7 +20,7 @@ def inBunker(driver):
 
 def timeGetOutOfBunker(driver):
     try:
-        timeanddate = driver.find_element(By.CSS_SELECTOR, "div.defpadding>span").get_attribute("innerHTML")
+        timeanddate = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.defpadding>span"))).get_attribute("innerHTML")
         clock = timeanddate[-8:]
         bunkerTime = clock.split(":")
         bunkerTimeTimeFormat = datetime.time(int(bunkerTime[0]), int(bunkerTime[1]), int(bunkerTime[2]))

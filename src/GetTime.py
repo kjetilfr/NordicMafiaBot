@@ -1,12 +1,14 @@
 from selenium.webdriver.common.by import By
 import datetime
 import time
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def checkClock(driver):
     try:
         time.sleep(0.3)
-        dateClock = driver.find_element(By.ID, "mainClock")
+        dateClock = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "mainClock")))
         clock = str(dateClock.get_attribute("innerHTML"))
         clock = clock[-8:]
         newTime = clock.split(":")

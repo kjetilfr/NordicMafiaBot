@@ -34,6 +34,8 @@ def download_image(driver):
     elem = driver.find_element(By.TAG_NAME, "img")
     url = elem.get_attribute("src")
     urllib.request.urlretrieve(url, "payload.jpg")
+    time.sleep(5)
+    print("download complete!")
     driver.switch_to.parent_frame()
 
 
@@ -166,6 +168,7 @@ def solve_grid(driver):
             solve_grid(driver)
         else:
             print("StartRecaptcha")
+
             solveRecaptcha(driver)
             print("DoneRecaptcha")
             # download_image(driver)

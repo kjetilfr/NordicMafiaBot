@@ -166,8 +166,9 @@ def utforBiltyveri(driver, biltyveriAction):
                     sellCar(driver)
                 else:
                     if int(carSkade.replace("%", "")) < 20 and carName != "Volkswagen Polo":
-                        if GetMoney.getMoney(driver) < 20000:
+                        if GetMoney.getMoney(driver) < 40000:
                             Bank.withdrawXAmount(driver, 100000)
+                        driver.find_element(By.LINK_TEXT, "Biltyveri/Garasje").click()
                         sendCar(driver)
                     else:
                         sellCar(driver)

@@ -64,8 +64,9 @@ def get_click_array(classNbr):
     model = YOLO("yolov8m.pt")
 
     # results = model.predict("payload4.jpg")
+    print("Hey")
     results = model.predict(source="payload.jpg", retina_masks=True, save=True, classes=[classNbr, classNbr])
-
+    print("Ho")
 
     result = results[0]
 
