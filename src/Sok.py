@@ -210,3 +210,12 @@ def aktive_spillere(driver):
     for username in username_elements:
         users.append(username.get_attribute("innerHTML"))
     return users
+
+
+def sjekk_dod(driver):
+    #send kule på 1kr
+    #er dod = remove frå liste
+    # går gjennom = canceller kule
+    print("removed")
+    #finito
+

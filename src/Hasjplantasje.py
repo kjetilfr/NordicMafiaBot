@@ -33,16 +33,56 @@ def getArbeiderAndKvm(driver):
         time.sleep(sleepRandomLow() / 3)
         currentMoney = GetMoney.getMoney(driver)
         spendingMoney = currentMoney
-        ratioArbeider = 17600
-        ratioKvm = 43500 * 2
+        ratioArbeider = 17600 * 2
+        ratioKvm = 43500
         totRatio = ratioArbeider + ratioKvm
         devidedMoney = spendingMoney / totRatio
         arbeidererKjop = devidedMoney * ratioArbeider
         kvmKjop = devidedMoney * ratioKvm
-        return int(arbeidererKjop / ratioArbeider), int(kvmKjop / ratioKvm * 2)
+        arbeidererKjop = int(arbeidererKjop)
+        ratioArbeider = int(ratioArbeider)
+        kvmKjop = int(kvmKjop)
+        ratioKvm = int(ratioKvm)
+        if (int(arbeidererKjop / ratioArbeider * 2)) % 2 == 0:
+            investment = int(arbeidererKjop / ratioArbeider * 2)
+        else:
+            investment = int(arbeidererKjop / ratioArbeider * 2) - 1
+        return investment, investment / 2
     except:
         print("Cant get Arbeider & Kvm")
         return 0, 0
+
+
+def is_hasj_correct(driver):
+    hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
+    kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
+    kvm = kvm[:-3]
+    arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
+    kvm = int(kvm)
+    arb = int(arb)
+    if arb / 2 == kvm:
+        return True
+    else:
+        return False
+
+
+def fix_hasj(driver):
+    hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
+    kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
+    kvm = kvm[:-3]
+    arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
+    kvm = int(kvm)
+    arb = int(arb)
+    if arb / 2 < kvm:
+        buy_arb = kvm * 2 - arb
+        ansettArbeidere(driver, buy_arb)
+    else:
+        buy_kvm = arb / 2 - kvm
+        if buy_kvm % 2 != 0:
+            buy_kvm = buy_kvm - 0.5
+            ansettKvm(driver, int(buy_kvm))
+        else:
+            ansettKvm(driver, int(buy_kvm))
 
 
 def flyttArbeidere(driver):
@@ -105,6 +145,9 @@ def oppgraderHasj(driver):
     isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
         try:
+            check_hasj = is_hasj_correct(driver)
+            if not check_hasj:
+                fix_hasj(driver)
             getStats = getArbeiderAndKvm(driver)
             antallArbeidere = getStats[0]
             antallKvm = getStats[1]
