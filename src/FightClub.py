@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import random
 from . import AntiBot
@@ -9,6 +11,16 @@ from . import DoRandomStuff
 
 def sleepRandomLow():
     return random.randint(1, 3)
+
+
+def start_fight():
+    print("HEy")
+
+def check_fight(driver):
+    tables = WebDriverWait(driver, 1).until(EC.presence_of_all_elements_located((By.TAG_NAME, "table")))
+    for table in tables:
+        print("Hey")
+    profile_name = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "bullets")))
 
 
 def utforFightClub(driver, fightclubAction):
