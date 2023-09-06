@@ -8,22 +8,28 @@
             "ProxyPort": "NaN"
         },
         {
-            "Brukernavn": "username",
-            "Passord": "password"
+            "Brukernavn": "User",
+            "Passord": "Pass"
         },
         {
             "Kriminalitet": 5,
             "Utpressing": 0,
             "UtpressingPerson": "Test",
             "Fightclub": 2,
-            "Biltyveri": 1,
+            "Fightclub_fight": 1,
+            "Fightclub_belop": 100,
+            "Biltyveri": 2,
             "Fengsel": 1,
             "Livvakt": 1,
             "Hasjplantasje": 1,
-            "Organisert Kriminalitet": 1
+            "Organisert Kriminalitet": 1,
+            "Filmproduksjon": 1,
+            "CDG": 0,
+            "CDGPerson": "Person",
+            "Gangstere": 1
         },
         {
-            "LongTimeout": 1,
+            "LongTimeout": 0,
             "LongTimeoutTimerInHours": 8,
             "LongTimeoutTimerStart": "01:01:01"
         }
@@ -32,27 +38,27 @@
         {
             "Menytimer": 0,
             "Headless": 0,
-            "Proxy": 0,
-            "ProxyIP": "NaN",
-            "ProxyPort": "NaN"
+            "Proxy": 1,
+            "ProxyIP": "95.217.210.191",
+            "ProxyPort": "8080"
         },
         {
-            "Brukernavn": "username",
-            "Passord": "password"
+            "Brukernavn": "boris",
+            "Passord": "sirob"
         },
         {
-            "Kriminalitet": 0,
+            "Kriminalitet": 2,
             "Utpressing": 0,
             "UtpressingPerson": "Test",
-            "Fightclub": 0,
-            "Biltyveri": 0,
-            "Hasjplantasje": 0,
+            "Fightclub": 3,
+            "Biltyveri": 3,
+            "Hasjplantasje": 1,
             "Organisert Kriminalitet": 0
         },
         {
             "LongTimeout": 0,
             "LongTimeoutTimerInHours": 0,
-            "LongTimeoutTimerStart": "0"
+            "LongTimeoutTimerStart": "00:00:00"
         }
     ],
     "3": [

@@ -50,6 +50,9 @@ def loadProfile():
         if Utpressing == 1:
             UtpressingPerson = input("Dersom ja brukernavn på den som skal utpresses: ")
         Fightclub = input("Fightclub: (0 for ingen, 1 for 11 pullups, 2 for 5 benkpress eller 3 for 25 pushups): ")
+        Fightclub_fight = input("Legge ut fight? (0 for nei, 1 for ja: ")
+        if Fightclub_fight == 1:
+            Fightclub_belop = input("Belop for fightclub fight (minimum 100 kr): ")
         Biltyveri = input("Biltyveri: (0 for ingen, 1 for bil på gata, 2 for privat parkeringsplass, 3 for bilnøkler eller 4 for offentlig parkeringsplass): ")
         Fengsel = input("Bryte ut folk fra fengsel: (1 for ja, 0 for nei) ")
         Hasjplantasje = input("Hasjplantasje: (1 for å invistere i hasj, 0 for å sette penger i banken): ")
@@ -86,6 +89,8 @@ def loadProfile():
             if Utpressing == 1:
                 data[profileName][2]['UtpressingPerson'] = UtpressingPerson
             data[profileName][2]['Fightclub'] = int(Fightclub)
+            data[profileName][2]['Fightclub_fight'] = int(Fightclub_fight)
+            data[profileName][2]['Fightclub_belop'] = int(Fightclub_belop)
             data[profileName][2]['Biltyveri'] = int(Biltyveri)
             data[profileName][2]['Fengsel'] = int(Fengsel)
             data[profileName][2]['Hasjplantasje'] = int(Hasjplantasje)

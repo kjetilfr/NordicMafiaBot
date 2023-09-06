@@ -18,7 +18,8 @@ def checkLogin(driver):
             EC.presence_of_element_located((By.ID, "usernameCont"))
             # This is a dummy element
         )
-        if elem.find_element(By.TAG_NAME, "a").get_attribute("innerHTML") == data[1]["Brukernavn"]:
+
+        if elem.find_element(By.TAG_NAME, "a").get_attribute("innerHTML").lower() == data[1]["Brukernavn"].lower():
             return True
         else:
             print("Not logged in, trying to login in 60 seconds")
