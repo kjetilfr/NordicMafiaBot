@@ -96,7 +96,7 @@ def utpress(driver, utpressAction, utpressPerson):
     except:
         print("driver.find_element(By.LINK_TEXT, Utpressing).click() went wrong")
     if IsLoggedIn.checkLogin(driver):
-        new = 1
+        new = 0
         if new == 1:
             utforUtpress(driver, 1, check_rich(driver))
         else:
