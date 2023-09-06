@@ -13,8 +13,11 @@ def check_rich(driver):
     pre_link = "https://nordicmafia.org/index.php?p=profile&id="
     i = 0
     while i < len(rich_list):
+        if not IsLoggedIn.checkLogin(driver):
+            break
         try:
             driver.get(pre_link + str(rich_list[i][1]))
+            time.sleep(1)
             table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table>tbody")))
             pengestatus = table.find_element(By.CSS_SELECTOR, "tr:nth-child(7)>td:nth-child(2)")
             pengestatus = pengestatus.get_attribute("innerHTML")
