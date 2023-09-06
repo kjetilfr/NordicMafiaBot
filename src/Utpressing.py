@@ -9,7 +9,7 @@ from . import IsLoggedIn
 
 
 def check_rich(driver):
-    rich_list = [["Troublesome", 3072], ["Bartzabel", 3115], ["Erna Solberg", 295], ["Ice Cold", 28], ["Toxic", 892], ["Crazyeye", 865], ["Waaler", 742], ["John Gotti", 223]]
+    rich_list = [["Troublesome", 3072], ["Erna Solberg", 295], ["Ice Cold", 28], ["Toxic", 892], ["Crazyeye", 865], ["Waaler", 742], ["John Gotti", 223], ["Bartzabel", 3115]]
     pre_link = "https://nordicmafia.org/index.php?p=profile&id="
     i = 0
     while i < len(rich_list):

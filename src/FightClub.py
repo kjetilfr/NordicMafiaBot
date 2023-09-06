@@ -28,20 +28,23 @@ def find_match(win_loss, kamp_matches):
     return False
 
 def check_fight(driver):
-    data = getData()
-    bet_amount = data[2]["Fightclub_belop"]
-    # All matches available
-    kamp_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.fightclub_box.fightclub_box-Kamper>table")))
-    kamp_matches = kamp_table.find_elements(By.CSS_SELECTOR, "tr")
+    try:
+        data = getData()
+        bet_amount = data[2]["Fightclub_belop"]
+        # All matches available
+        kamp_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.fightclub_box.fightclub_box-Kamper>table")))
+        kamp_matches = kamp_table.find_elements(By.CSS_SELECTOR, "tr")
 
-    # Personal info
-    form_3 = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "form:nth-child(6)")))
-    start_kamp_table = WebDriverWait(form_3, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.fightclub_box>table")))
-    win_loss = start_kamp_table.find_element(By.CSS_SELECTOR, "tr:nth-child(2)>td:nth-child(2)>span").get_attribute("innerHTML")
-    if not find_match(win_loss, kamp_matches):
-        belop_field = driver.find_element(By.NAME, "belop")
-        belop_field.send_keys(bet_amount)
-        driver.find_element(By.NAME, "startFight").click()
+        # Personal info
+        form_3 = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "form:nth-child(6)")))
+        start_kamp_table = form_3.find_element(By.CSS_SELECTOR, "div.fightclub_box>table")
+        win_loss = start_kamp_table.find_element(By.CSS_SELECTOR, "tr:nth-child(2)>td:nth-child(2)>span").get_attribute("innerHTML")
+        if not find_match(win_loss, kamp_matches):
+            belop_field = driver.find_element(By.NAME, "belop")
+            belop_field.send_keys(bet_amount)
+            driver.find_element(By.NAME, "startFight").click()
+    except:
+        print("Cant check fight")
 
 
 def utforFightClub(driver, fightclubAction):

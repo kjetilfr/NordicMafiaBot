@@ -8,6 +8,8 @@ from . import Bank
 import json
 import time
 
+mod_list = ["Megan Fox", "Silver Fox", "Andrew", "Christian", "Erlend", "Kristian", "Nyan Cat", "System"]
+
 
 def new_players(driver):
     IsLoggedIn.checkLogin(driver)
@@ -66,7 +68,8 @@ def write_to_file(player_array):
         for player in player_array:
             if not player in users:
                 if not player in vargs:
-                    users.append(player)
+                    if not player in mod_list:
+                        users.append(player)
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate()
