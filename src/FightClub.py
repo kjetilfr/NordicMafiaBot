@@ -7,14 +7,16 @@ from . import AntiBot
 from . import CheckCountdown
 from . import IsLoggedIn
 from . import DoRandomStuff
+from Settings import jsonRead
 
 
 def sleepRandomLow():
     return random.randint(1, 3)
 
 
-def start_fight():
-    print("HEy")
+def getData():
+    data = jsonRead.smallLoad()
+    return data
 
 def find_match(win_loss, kamp_matches):
     i = 0
@@ -26,7 +28,8 @@ def find_match(win_loss, kamp_matches):
     return False
 
 def check_fight(driver):
-    bet_amount = 100
+    data = getData()
+    bet_amount = data[2]["Fightclub_belop"]
     # All matches available
     kamp_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.fightclub_box.fightclub_box-Kamper>table")))
     kamp_matches = kamp_table.find_elements(By.CSS_SELECTOR, "tr")
@@ -76,6 +79,7 @@ def utforFightClub(driver, fightclubAction):
 
 
 def fightclub(driver, fightclubAction):
+    data = getData()
     IsLoggedIn.checkLogin(driver)
     # TRY CATCH/EXCEPT IN CASE OF ERROR
     try:
@@ -84,7 +88,8 @@ def fightclub(driver, fightclubAction):
         print("driver.find_element(By.LINK_TEXT, Fightclub).click() went wrong")
     if IsLoggedIn.checkLogin(driver):
         utforFightClub(driver, fightclubAction)
-        check_fight(driver)
+        if data[2]["Fightclub_fight"] == 1:
+            check_fight(driver)
     else:
         # TRY CATCH/EXCEPT IN CASE OF ERROR
         try:
