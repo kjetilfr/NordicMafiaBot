@@ -42,6 +42,7 @@ def check_fight(driver):
         if not find_match(win_loss, kamp_matches):
             belop_field = driver.find_element(By.NAME, "belop")
             belop_field.send_keys(bet_amount)
+            time.sleep(0.3)
             driver.find_element(By.NAME, "startFight").click()
     except:
         print("Cant check fight")

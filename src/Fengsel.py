@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 import time
 import random
 from . import DoRandomStuff
@@ -27,7 +28,7 @@ def brytUtPerson(driver):
             extraSleepTime = 6 * 60
             print("Sleeping extra " + str(extraSleepTime) + " seconds")
             time.sleep(extraSleepTime)
-        except:
+        except NoSuchElementException:
             # TRY CATCH/EXCEPT IN CASE OF ERROR
             try:
                 antallPersonerSomKanBrytestUt = driver.find_elements(By.LINK_TEXT, "Bryt ut")

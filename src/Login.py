@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 import time
 import random
 from Settings import jsonRead
+from . import IsLoggedIn
 
 
 def getData():
@@ -43,5 +44,6 @@ def login(driver):
         time.sleep(0.3)
         passwordField.send_keys(Keys.RETURN)
         # LOGIN END
+        IsLoggedIn.checkLogin(driver)
     except:
         print("Something went wrong with login")

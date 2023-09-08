@@ -54,35 +54,41 @@ def getArbeiderAndKvm(driver):
 
 
 def is_hasj_correct(driver):
-    hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
-    kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
-    kvm = kvm[:-3]
-    arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
-    kvm = int(kvm)
-    arb = int(arb)
-    if arb / 2 == kvm:
-        return True
-    else:
-        return False
+    try:
+        hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
+        kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
+        kvm = kvm[:-3]
+        arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
+        kvm = int(kvm)
+        arb = int(arb)
+        if arb / 2 == kvm:
+            print("correct hasj ratio")
+            return True
+        else:
+            return False
+    except:
+        print("Cant is hasj correct")
 
 
 def fix_hasj(driver):
-    hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
-    kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
-    kvm = kvm[:-3]
-    arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
-    kvm = int(kvm)
-    arb = int(arb)
-    if arb / 2 < kvm:
-        buy_arb = kvm * 2 - arb
-        ansettArbeidere(driver, buy_arb)
-    else:
-        buy_kvm = arb / 2 - kvm
-        if buy_kvm % 2 != 0:
-            buy_kvm = buy_kvm - 0.5
-            ansettKvm(driver, int(buy_kvm))
-        else:
-            ansettKvm(driver, int(buy_kvm))
+    try:
+        hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
+        kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
+        kvm = kvm[:-3]
+        arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
+        kvm = int(kvm)
+        arb = int(arb)
+        if arb / 2 < kvm:
+            buy_arb = kvm * 2 - arb
+            print("kjøper " + str(buy_arb) + " arb")
+            ansettArbeidere(driver, buy_arb)
+        elif arb / 2 > kvm:
+            buy_kvm = (kvm * 2 - arb) * -2
+            print("kjøper " + str(buy_kvm) + " kvm")
+            ansettKvm(driver, buy_kvm)
+    except:
+        print("Cant fix hasj")
+
 
 
 def flyttArbeidere(driver):
@@ -110,7 +116,7 @@ def ansettArbeidere(driver, amount):
         time.sleep(sleepRandomLow() / 10)
         arbeiderField.send_keys(Keys.BACKSPACE)
         time.sleep(sleepRandomLow() / 10)
-        arbeiderField.send_keys(amount)
+        arbeiderField.send_keys(int(amount))
         time.sleep(sleepRandomLow() / 10)
         elements = driver.find_elements(By.NAME, "upgrade")
         time.sleep(sleepRandomLow() / 10)
@@ -129,7 +135,7 @@ def ansettKvm(driver, amount):
         time.sleep(sleepRandomLow() / 10)
         kvmField.send_keys(Keys.BACKSPACE)
         time.sleep(sleepRandomLow() / 10)
-        kvmField.send_keys(amount)
+        kvmField.send_keys(int(amount))
         time.sleep(sleepRandomLow() / 10)
         elements = driver.find_elements(By.NAME, "upgrade")
         time.sleep(sleepRandomLow() / 10)

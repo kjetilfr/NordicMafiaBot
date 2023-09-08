@@ -69,7 +69,6 @@ def doBotStuffMenyTimer():
         time.sleep(20)
         AntiBot.checkAntiBot(driver)
         IsLoggedIn.checkLogin(driver)
-        IsInBunker.bunker(driver)
         if GetTimer.getTimer(driver, "Fengsel") == 0:
             #if datetime.time(18, 57, 00) <= GetTime.checkClock(driver) <= datetime.time(18, 58, 00):
             #    Sok.start_sok_personer(driver)
@@ -114,7 +113,6 @@ def doBotStuffMenyTimer():
 
 def startBot():
     Login.login(driver)
-    IsInBunker.bunker(driver)
     if jsonData[2]["Livvakt"] == 1:
         Livvaktutleie.livvaktutleie(driver)
     Bank.bankIdealAmount(driver)
