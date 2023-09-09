@@ -29,7 +29,7 @@ def utforKrim(driver, krimAction):
                 if krimAction == 1:
                     # TRY CATCH/EXCEPT IN CASE OF ERROR
                     try:
-                        elem = WebDriverWait(driver, 1).until(
+                        elem = WebDriverWait(driver, 0.5).until(
                             EC.presence_of_element_located((By.ID, "rowid_table_select_krimaction0"))  # This is a dummy element
                         )
                         elem.click()
@@ -39,7 +39,7 @@ def utforKrim(driver, krimAction):
                 elif krimAction == 2:
                     # TRY CATCH/EXCEPT IN CASE OF ERROR
                     try:
-                        elem = WebDriverWait(driver, 1).until(
+                        elem = WebDriverWait(driver, 0.5).until(
                             EC.presence_of_element_located((By.ID, "rowid_table_select_krimaction1"))
                             # This is a dummy element
                         )
@@ -50,7 +50,7 @@ def utforKrim(driver, krimAction):
                 elif krimAction == 3:
                     # TRY CATCH/EXCEPT IN CASE OF ERROR
                     try:
-                        elem = WebDriverWait(driver, 1).until(
+                        elem = WebDriverWait(driver, 0.5).until(
                             EC.presence_of_element_located((By.ID, "rowid_table_select_krimaction2"))
                             # This is a dummy element
                         )
@@ -61,7 +61,7 @@ def utforKrim(driver, krimAction):
                 elif krimAction == 4:
                     # TRY CATCH/EXCEPT IN CASE OF ERROR
                     try:
-                        elem = WebDriverWait(driver, 1).until(
+                        elem = WebDriverWait(driver, 0.5).until(
                             EC.presence_of_element_located((By.ID, "rowid_table_select_krimaction3"))
                             # This is a dummy element
                         )
@@ -72,7 +72,7 @@ def utforKrim(driver, krimAction):
                 else:
                     # TRY CATCH/EXCEPT IN CASE OF ERROR
                     try:
-                        elem = WebDriverWait(driver, 1).until(
+                        elem = WebDriverWait(driver, 0.5).until(
                             EC.presence_of_element_located((By.ID, "rowid_table_select_krimaction4"))
                             # This is a dummy element
                         )

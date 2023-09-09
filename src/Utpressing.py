@@ -18,7 +18,7 @@ def check_rich(driver):
         try:
             driver.get(pre_link + str(rich_list[i][1]))
             time.sleep(1)
-            table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table>tbody")))
+            table = WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table>tbody")))
             pengestatus = table.find_element(By.CSS_SELECTOR, "tr:nth-child(7)>td:nth-child(2)")
             pengestatus = pengestatus.get_attribute("innerHTML")
             if pengestatus == "Beryktende rik":

@@ -120,7 +120,7 @@ def utforBiltyveri(driver, biltyveriAction):
     # CHECK IF COUNTING
     isCounting = CheckCountdown.checkCountdown(driver)
     if isCounting == False:
-        time.sleep(sleepRandomLow() / 2)
+        time.sleep(sleepRandomLow() / 4)
         # CHECK what action to do
         if biltyveriAction == 0:
             # DO RANDOM STUFF
@@ -155,7 +155,7 @@ def utforBiltyveri(driver, biltyveriAction):
         try:
             biltyveriSuccess = driver.find_elements(By.CLASS_NAME, "successBox")
             if len(biltyveriSuccess) > 0:
-                time.sleep(sleepRandomLow() / 2)
+                time.sleep(sleepRandomLow() / 4)
                 # TRY TO SEND CAR AGAIN
                 #sendCar(driver)
                 carTR = driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']")
