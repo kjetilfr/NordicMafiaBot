@@ -61,7 +61,7 @@ def is_hasj_correct(driver):
         arb = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr:nth-child(2)>td:nth-child(2)").get_attribute("innerHTML")
         kvm = int(kvm)
         arb = int(arb)
-        if arb / 2 == kvm:
+        if kvm * 2 == arb:
             print("correct hasj ratio")
             return True
         else:
@@ -80,12 +80,30 @@ def fix_hasj(driver):
         arb = int(arb)
         if arb / 2 < kvm:
             buy_arb = kvm * 2 - arb
-            print("kjøper " + str(buy_arb) + " arb")
-            ansettArbeidere(driver, buy_arb)
+            money_on_hand = int(GetMoney.getMoney(driver))
+            kan_kjope_arb_max = int(money_on_hand / 17600)
+            if buy_arb > kan_kjope_arb_max:
+                # Har ikkje råd til å kjøpe alt enn trenger så kjøper max
+                print("kjøper " + str(kan_kjope_arb_max) + " arb")
+                ansettArbeidere(driver, kan_kjope_arb_max)
+            else:
+                # Kjøper det enn trenger
+                print("kjøper " + str(buy_arb) + " arb")
+                ansettArbeidere(driver, buy_arb)
         elif arb / 2 > kvm:
             buy_kvm = (kvm * 2 - arb) * -2
-            print("kjøper " + str(buy_kvm) + " kvm")
-            ansettKvm(driver, buy_kvm)
+            money_on_hand = int(GetMoney.getMoney(driver))
+            kan_kjope_kvm_max = int(money_on_hand / 43500)
+            if buy_kvm > kan_kjope_kvm_max:
+                # Har ikkje råd til å kjøpe alt enn trenger så kjøper max
+                print("kjøper " + str(kan_kjope_kvm_max) + " kvm")
+                ansettKvm(driver, kan_kjope_kvm_max)
+            else:
+                # Kjøper det enn trenger
+                print("kjøper " + str(buy_kvm) + " kvm")
+                ansettKvm(driver, buy_kvm)
+        else:
+            print("What is happening?!")
     except:
         print("Cant fix hasj")
 
@@ -112,6 +130,8 @@ def flyttArbeidere(driver):
 
 def ansettArbeidere(driver, amount):
     try:
+        time.sleep(sleepRandomLow() / 10)
+        driver.find_element(By.NAME, "upgrade").click()
         arbeiderField = driver.find_element(By.NAME, "numWorkers")
         time.sleep(sleepRandomLow() / 10)
         arbeiderField.send_keys(Keys.BACKSPACE)
@@ -131,6 +151,8 @@ def ansettArbeidere(driver, amount):
 
 def ansettKvm(driver, amount):
     try:
+        driver.find_element(By.NAME, "upgrade").click()
+        time.sleep(sleepRandomLow() / 10)
         kvmField = driver.find_element(By.NAME, "numKvm")
         time.sleep(sleepRandomLow() / 10)
         kvmField.send_keys(Keys.BACKSPACE)
@@ -154,16 +176,13 @@ def oppgraderHasj(driver):
             check_hasj = is_hasj_correct(driver)
             if not check_hasj:
                 fix_hasj(driver)
-            getStats = getArbeiderAndKvm(driver)
-            antallArbeidere = getStats[0]
-            antallKvm = getStats[1]
-            time.sleep(sleepRandomLow() / 10)
-            driver.find_element(By.NAME, "upgrade").click()
-            time.sleep(sleepRandomLow() / 10)
-            ansettArbeidere(driver, antallArbeidere)
-            time.sleep(sleepRandomLow() / 10)
-            driver.find_element(By.NAME, "upgrade").click()
-            ansettKvm(driver, antallKvm)
+            else:
+                getStats = getArbeiderAndKvm(driver)
+                antallArbeidere = getStats[0]
+                antallKvm = getStats[1]
+                time.sleep(sleepRandomLow() / 10)
+                ansettArbeidere(driver, antallArbeidere)
+                ansettKvm(driver, antallKvm)
         except:
             print("Could not upgrade hasj")
     else:

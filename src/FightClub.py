@@ -39,6 +39,7 @@ def check_fight(driver):
         form_3 = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, "form:nth-child(6)")))
         start_kamp_table = form_3.find_element(By.CSS_SELECTOR, "div.fightclub_box>table")
         win_loss = start_kamp_table.find_element(By.CSS_SELECTOR, "tr:nth-child(2)>td:nth-child(2)>span").get_attribute("innerHTML")
+        time.sleep(0.5)
         if not find_match(win_loss, kamp_matches):
             belop_field = driver.find_element(By.NAME, "belop")
             belop_field.send_keys(bet_amount)
