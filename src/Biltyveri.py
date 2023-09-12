@@ -66,8 +66,9 @@ def sendCar(driver):
             print("driver.find_element(By.NAME, doTransport_confirm).click() went wrong")
 
 
-def sendCarSpesificCity(driver):
+def sendCarSpesificCity(driver, city):
     time.sleep(sleepRandomLow()/4)
+    cities = ["Oslo", "Stockholm", "København", "Helsinki", "London", "Moskva"]
     # Click sending car
     try:
         driver.find_element(By.XPATH, "//tr[@style='background-color: #ff4c4c;']").click()
@@ -78,7 +79,7 @@ def sendCarSpesificCity(driver):
     try:
         select = Select(driver.find_element(By.NAME, "targetcity"))
         time.sleep(sleepRandomLow() / 4)
-        select.select_by_value("5")
+        select.select_by_value(str(cities.index(city)))
     except:
         print("select = Select(driver.find_element(By.NAME, targetcity)) went wrong")
     # actually send car
@@ -162,8 +163,8 @@ def utforBiltyveri(driver, biltyveriAction):
                 carName = carTR.find_element(By.CSS_SELECTOR, "tr>td.carfield>div").get_attribute("innerHTML")
                 carSkade = carTR.find_element(By.CSS_SELECTOR, "tr>td:nth-child(3)>div").get_attribute("innerHTML")
                 if carName == "Mercedes-Benz SL 500" and GetCity.getCity(driver) == "Helsinki":
-                    # sendCarSpesificCity(driver)
-                    sellCar(driver)
+                    sendCarSpesificCity(driver, "Moskva")
+                    # sellCar(driver)
                 else:
                     if int(carSkade.replace("%", "")) < 20 and carName != "Volkswagen Polo":
                         if GetMoney.getMoney(driver) < 40000:
