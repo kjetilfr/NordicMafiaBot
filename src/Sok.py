@@ -44,6 +44,31 @@ def fengsel_players(driver):
     return fengsel_users
 
 
+def dead_players_from_list(driver):
+    IsLoggedIn.checkLogin(driver)
+    Bank.withdrawAll(driver)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Drep"))).click()
+    data = read_file()
+    personer = data["users"]
+    i = 0
+    dead_users = []
+    while i < 10:
+        driver.get("https://nordicmafia.org/index.php?p=kill")
+        victim_field = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "detectivename")))
+        driver.find_element(By.NAME, "citychoice").click()
+        victim_field.send_keys(personer[0])
+        WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.NAME, "dosearch"))).click()
+        time.sleep(0.2)
+        if len(driver.find_elements(By.XPATH, '//span[@style="color: red;"]')) > 0:
+            dead_users.append(personer[0])
+        personer.pop(0)
+        i += 1
+        time.sleep(0.02)
+    time.sleep(1)
+    Bank.depositAll(driver)
+    return dead_users
+
+
 def dead_players(driver):
     IsLoggedIn.checkLogin(driver)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Dagens mord"))).click()

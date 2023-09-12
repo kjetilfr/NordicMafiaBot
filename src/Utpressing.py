@@ -6,12 +6,16 @@ import random
 from . import AntiBot
 from . import CheckCountdown
 from . import IsLoggedIn
+from Settings import jsonRead
 
 
 def check_rich(driver):
-    rich_list = [["Troublesome", 3072], ["Erna Solberg", 295], ["Ice Cold", 28], ["Toxic", 892], ["Crazyeye", 865], ["Waaler", 742], ["John Gotti", 223], ["Bartzabel", 3115]]
+    rich_list = [["Ice Cold", 28], ["Toxic", 892], ["Crazyeye", 865], ["Waaler", 742], ["John Gotti", 223], ["Bartzabel", 3115], ["Troublesome", 3072], ["Erna Solberg", 295]]
     pre_link = "https://nordicmafia.org/index.php?p=profile&id="
     i = 0
+    rich_ppl_list = []
+    if random.randint(1, 3) == 1:
+        return "None"
     while i < len(rich_list):
         if not IsLoggedIn.checkLogin(driver):
             break
@@ -24,7 +28,7 @@ def check_rich(driver):
             if pengestatus == "Beryktende rik":
                 time.sleep(1)
                 driver.find_element(By.LINK_TEXT, "Utpressing").click()
-                return rich_list[i][0]
+                rich_ppl_list.append(rich_list[i][0])
         except:
             print("failed check_rich")
         time.sleep(2)
@@ -34,7 +38,10 @@ def check_rich(driver):
         driver.find_element(By.LINK_TEXT, "Utpressing").click()
     except:
         print("failed to click utpressing")
-    return "Bartzabel"
+    if len(rich_ppl_list) == 0:
+        return "None"
+    else:
+        return random.choice(rich_ppl_list)
 
 
 def sleepRandomLow():
@@ -96,9 +103,13 @@ def utpress(driver, utpressAction, utpressPerson):
     except:
         print("driver.find_element(By.LINK_TEXT, Utpressing).click() went wrong")
     if IsLoggedIn.checkLogin(driver):
-        new = 1
-        if new == 1:
-            utforUtpress(driver, 1, check_rich(driver))
+        data = jsonRead.smallLoad()
+        if data[2]["Utpressing"] == 2:
+            person = check_rich(driver)
+            if not person == "None":
+                utforUtpress(driver, 1, person)
+            else:
+                utforUtpress(driver, 0, person)
         else:
             utforUtpress(driver, utpressAction, utpressPerson)
     else:

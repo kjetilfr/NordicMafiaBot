@@ -19,6 +19,7 @@ def sleepRandomLow():
 
 def selgHasj(driver):
     try:
+        AntiBot.checkAntiBot(driver)
         driver.find_element(By.NAME, "sellweed").click()
         driver.find_element(By.LINK_TEXT, "klikk her").click()
         driver.find_element(By.NAME, "transfermoney").click()
@@ -30,6 +31,7 @@ def selgHasj(driver):
 
 def getArbeiderAndKvm(driver):
     try:
+        AntiBot.checkAntiBot(driver)
         time.sleep(sleepRandomLow() / 3)
         currentMoney = GetMoney.getMoney(driver)
         spendingMoney = currentMoney
@@ -55,6 +57,7 @@ def getArbeiderAndKvm(driver):
 
 def is_hasj_correct(driver):
     try:
+        AntiBot.checkAntiBot(driver)
         hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
         kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
         kvm = kvm[:-3]
@@ -72,6 +75,7 @@ def is_hasj_correct(driver):
 
 def fix_hasj(driver):
     try:
+        AntiBot.checkAntiBot(driver)
         hasj_table = WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.ID, "weedFarmGeneralInfo")))
         kvm = hasj_table.find_element(By.CSS_SELECTOR, "tbody>tr>td:nth-child(2)").get_attribute("innerHTML")
         kvm = kvm[:-3]
@@ -111,6 +115,7 @@ def fix_hasj(driver):
 
 def flyttArbeidere(driver):
     try:
+        AntiBot.checkAntiBot(driver)
         driver.find_element(By.NAME, "moveworkers").click()
         time.sleep(sleepRandomLow() / 10)
         arbeidsloseArbeidere = driver.find_element(By.CSS_SELECTOR, "table#weedFarmGeneralInfo>tbody>tr:nth-child(3)>td:nth-child(2)").get_attribute("innerHTML")
@@ -130,6 +135,7 @@ def flyttArbeidere(driver):
 
 def ansettArbeidere(driver, amount):
     try:
+        AntiBot.checkAntiBot(driver)
         time.sleep(sleepRandomLow() / 10)
         driver.find_element(By.NAME, "upgrade").click()
         arbeiderField = driver.find_element(By.NAME, "numWorkers")
@@ -144,6 +150,7 @@ def ansettArbeidere(driver, amount):
         time.sleep(sleepRandomLow() / 10)
         driver.find_element(By.LINK_TEXT, "Klikk her").click()
         time.sleep(sleepRandomLow())
+        print("Ansatt " + str(amount) + " arb")
         flyttArbeidere(driver)
     except:
         print("Failed ansett arbeidere i hasjplantasjen")
@@ -151,6 +158,7 @@ def ansettArbeidere(driver, amount):
 
 def ansettKvm(driver, amount):
     try:
+        AntiBot.checkAntiBot(driver)
         driver.find_element(By.NAME, "upgrade").click()
         time.sleep(sleepRandomLow() / 10)
         kvmField = driver.find_element(By.NAME, "numKvm")
@@ -164,6 +172,7 @@ def ansettKvm(driver, amount):
         elements[1].click()
         time.sleep(sleepRandomLow() / 10)
         driver.find_element(By.LINK_TEXT, "Klikk her").click()
+        print("Kjøpt " + str(amount) + " kvm")
     except:
         print("Failed ansett arbeidere i hasjplantasjen")
 
