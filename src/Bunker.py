@@ -53,7 +53,7 @@ def gaaIBunkerCheck(driver):
         if isCounting == False:
             enterBunker(driver)
             time.sleep(4)
-            if len(driver.find_elements(By.NAME, "dobuyout")) > 1:
+            if len(driver.find_elements(By.NAME, "dobuyout")) > 0:
                 print("sleep for " + str(7200 + random.randint(50, 200)))
                 time.sleep(7200 + random.randint(50, 200))
             else:
@@ -61,7 +61,7 @@ def gaaIBunkerCheck(driver):
         else:
             enterBunker(driver)
             time.sleep(4)
-            if len(driver.find_elements(By.NAME, "dobuyout")) > 1:
+            if len(driver.find_elements(By.NAME, "dobuyout")) > 0:
                 print("sleep for " + str(7200 + random.randint(50, 200)))
                 time.sleep(7200 + random.randint(50, 200))
             else:
