@@ -26,3 +26,6 @@ Kan kjøre 24/7 eller ta pauser.
 Går automatisk i bunker
 
 Har selv ranket fra sivilist til gudfar uten problem.
+
+
+NordicMafia bytta fra reCaptcha til cloudflare så denne vil ikke lenger gjøre det automatisk så vær så god
